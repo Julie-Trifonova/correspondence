@@ -1,0 +1,14 @@
+.left_button {
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: blueviolet;
+}
+
+.page_number:nth-child(n + 2) {
+    margin-left: 5px;
+}
+.page_number:hover {
+    cursor: pointer;
+}

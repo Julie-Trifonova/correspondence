@@ -1,0 +1,7 @@
+.paginator {
+    display: block;
+    width: 300px;
+    background-color: #61dafb;
+    /*position: absolute;*/
+    /*z-index: 3;*/
+}

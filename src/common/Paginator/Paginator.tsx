@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
 import s from "./Paginator.module.css";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import {IconButton} from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export const Paginator = ({
   totalDocumentsCount,
@@ -23,13 +28,9 @@ export const Paginator = ({
   return (
     <div className={s.left_button}>
       {portionNumber > 1 && (
-        <button
-          onClick={() => {
-            setPortionNumber(portionNumber - 1);
-          }}
-        >
-          PREV
-        </button>
+        <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}} color="success" aria-label="change portion back">
+        <ArrowBackIosNewIcon/>
+        </IconButton>
       )}
 
       {pages
@@ -38,25 +39,17 @@ export const Paginator = ({
         )
         .map((p) => {
           return (
-            <span
-              className={s.page_number}
-              key={p}
-              onClick={() => onPageChanged(p)}
-            >
-              {p}
-            </span>
+              <IconButton className={s.page_number} key={p} onClick={() => onPageChanged(p)} color="success" aria-label="change page">
+                {p}
+              </IconButton>
           );
         })}
 
       {portionCount > portionNumber && (
-        <button
-          onClick={() => {
-            setPortionNumber(portionNumber + 1);
-          }}
-        >
-          NEXT
-        </button>
-      )}
+          <IconButton onClick={() => {setPortionNumber(portionNumber + 1)}} color="success" aria-label="change portion forward">
+              <ArrowForwardIosIcon/>
+          </IconButton>
+          )}
     </div>
   );
 };

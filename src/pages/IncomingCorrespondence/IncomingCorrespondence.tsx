@@ -164,17 +164,19 @@ const IncomingCorrespondence = () => {
           <div>
             <IncomingDocumentCard document={d} />
             <span>
-              <button
-                onClick={() => {
-                  DeleteConfirmation(dispatch, deleteIncomingDocument(d.id));
-                }}
-              >
-                Delete
-              </button>
+
             </span>
           </div>
         ))}
       </div>
+      <Paginator
+          className={s.paginator}
+          totalDocumentsCount={totalDocumentsCount}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChanged={onPageChanged}
+          portionSize={2}
+      />
     </div>
   );
 };

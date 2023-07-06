@@ -24,6 +24,10 @@ import {
   getDocumentsIncomingCorrespondencePage,
 } from "../../redux/incomingCorrespondenceReducer";
 
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
 type QueryParamsType = {
   filter: { type?: string };
   _page?: string;
@@ -156,16 +160,15 @@ const IncomingCorrespondence = () => {
           to={`${totalDocumentsCount + 1}`}
           state={{ newDocument: newDocument }}
         >
-          + Incoming document
+          <Button variant="outlined" endIcon={<AddCircleOutlineIcon />}>
+            Добавить
+          </Button>
         </Link>
       </div>
       <div>
         {documents.map((d: any) => (
           <div>
             <IncomingDocumentCard document={d} />
-            <span>
-
-            </span>
           </div>
         ))}
       </div>

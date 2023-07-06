@@ -13,6 +13,24 @@ import {
   Input,
   Textarea,
 } from "../../common/FormsControls/FormsControls";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import {DeleteConfirmation} from "../../common/DeleteConfirmation/DeleteConfirmation";
+import {deleteIncomingDocument} from "../../redux/incomingCorrespondenceReducer";
+import {ExportToExel} from "@components/IncomingDocument/ExportToExel";
+import Typography from "@mui/material/Typography";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
+import MarkEmailUnreadIcon from "@mui/icons-material/MarkEmailUnread";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import StorageIcon from "@mui/icons-material/Storage";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import LinkIcon from "@mui/icons-material/Link";
+import Box from "@mui/material/Box";
+import {bull, unspecified} from "./IncomingDocumentData";
 
 const IncomingDocumentDataForm = ({
   initialValues,
@@ -31,27 +49,223 @@ const IncomingDocumentDataForm = ({
   const [checkedStatus, setStatus] = React.useState(document.status);
 
   return (
-    <form onSubmit={onSubmit}>
+
+      <>
+        <form onSubmit={onSubmit}>
+        <Box sx={{minWidth: 275}}>
+          <Card variant="outlined">
+            <CardContent>
+              <CardActions>
+                <Button size="medium" type='submit'>Сохранить</Button>
+              </CardActions>
+              <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+                Входящий документ
+              </Typography>
+              <div>
+                <Typography variant="h5" color="text.secondary" component="span">
+                  Название {bull}
+                </Typography>
+                {createField(
+                    "Название",
+                    "name",
+                    [required, maxLengthValidator(40)],
+                    Input,
+                    {},
+                    "",
+                    document.name,
+                    updateFormData
+                )}
+                {/*{document.name*/}
+                {/*    ? <Typography variant="h5" color="primary" component="span">*/}
+                {/*      <DriveFileRenameOutlineIcon color='primary'/>*/}
+                {/*      {document.name}*/}
+                {/*    </Typography>*/}
+                {/*    : unspecified()}*/}
+              </div>
+              <div>
+                {document.documentIsReading
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      Прочитано <MarkEmailReadIcon/>
+                    </Typography>
+                    : <Typography sx={{fontSize: 18}} color="error" component="span">
+                      Не прочитано <MarkEmailUnreadIcon/>
+                    </Typography>
+                }
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Регистрационный номер {bull}
+                </Typography>
+                {document.registrationNumber
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      {document.registrationNumber}
+                    </Typography>
+                    : unspecified()}
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Дата регистрации {bull}
+                </Typography>
+                {document.registrationDate
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      {document.registrationDate}
+                    </Typography>
+                    : unspecified()}
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Контрагент {bull}
+                </Typography>
+                {document.organizationName
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      {document.organizationName}
+                    </Typography>
+                    : unspecified()}
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="div">
+                  Контакты
+                </Typography>
+                <div>
+                  <span><AlternateEmailIcon color='primary'/></span>
+                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                    E-mail {bull}
+                  </Typography>
+                  {document.organizationEmail
+                      ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                        {document.organizationEmail}
+                      </Typography>
+                      : unspecified()}
+                </div>
+                <div>
+                  <span><LocalPhoneIcon color='success'/></span>
+                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                    Телефон {bull}
+                  </Typography>
+                  {document.organizationPhoneNumber
+                      ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                        {document.organizationPhoneNumber}
+                      </Typography>
+                      : unspecified()}
+                </div>
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Дополнительная информация {bull}
+                </Typography>
+                {document.organizationAdditionalInformation
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      {document.organizationAdditionalInformation}
+                    </Typography>
+                    : unspecified()}
+
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Статус {bull}
+                </Typography>
+                <Typography sx={{fontSize: 18}} color="primary" component="span">
+                  {document.status === "consideration" ? " На рассмотрении" : document.status === "sent response" ? " Отправлен ответ" : " Не указано"}
+                </Typography>
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Дата получения {bull}
+                </Typography>
+                {document.deliveryDate
+                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                      {document.deliveryDate}
+                    </Typography>
+                    : unspecified()}
+
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Способ доставки {bull}
+                </Typography>
+                <Typography sx={{fontSize: 18}} color="primary" component="span">
+                  {document.deliveryService === "fax" ? " Факс" : document.deliveryService === "paper" ? " Бумага" : "Не указано"}
+                </Typography>
+              </div>
+              <div>
+                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                  Срочность {bull}
+                </Typography>
+                <Typography sx={{fontSize: 18}} color="primary" component="span">
+                  {document.deadline === "month" ? " Месяц" : document.deadline === "week" ? " Неделя" : document.deadline === "day" ? " День" : document.deadline === "urgent" ? " Срочно" : document.deadline === "unspecified" ? " Не установлено" : " Не установлено"}
+                </Typography>
+              </div>
+              <div>
+                <div>
+                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                    Место хранения {bull}
+                  </Typography>
+                  {document.storagePlace
+                      ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                        <StorageIcon color="primary"/>
+                        {document.storagePlace}
+                      </Typography>
+                      : unspecified()}
+                </div>
+                <div>
+                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                    Вложения {bull}
+                  </Typography>
+                  {document.subDocuments
+                      ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                        <AssignmentIcon/>{document.subDocuments}
+                      </Typography>
+                      : unspecified()}
+                </div>
+                <div>
+                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
+                    Ссылки {bull}
+                  </Typography>
+                  {document.links
+                      ? <Typography sx={{fontSize: 18}} color="primary" component="span">
+                        <LinkIcon color="primary"/>{document.links}
+                      </Typography>
+                      : unspecified()}
+                </div>
+              </div>
+              <div>
+                <Typography sx={{fontSize: 16}} color="text.secondary" component="span">
+                  Зарегистрировал {bull}
+                </Typography>
+                {document.registeredEmployeeFullName
+                    ? <Typography sx={{fontSize: 16}} color="primary" component="span">
+                      {document.registeredEmployeeFullName}
+                    </Typography>
+                    : unspecified()}
+              </div>
+            </CardContent>
+          </Card>
+        </Box>
+        </form>
+
+
+
+    {/*<form onSubmit={onSubmit}>*/}
+      {/*<div>*/}
+      {/*  <button type="submit">save</button>*/}
+      {/*</div>*/}
       <div>
-        <button type="submit">save</button>
-      </div>
-      <div>
-        <div>
-          <span>Входящий документ. </span>
-        </div>
-        <div>
-          <span>Название</span>
-          {createField(
-            "Название",
-            "name",
-            [required, maxLengthValidator(40)],
-            Input,
-            {},
-            "",
-            document.name,
-            updateFormData
-          )}
-        </div>
+        {/*<div>*/}
+        {/*  <span>Входящий документ. </span>*/}
+        {/*</div>*/}
+        {/*<div>*/}
+          {/*<span>Название</span>*/}
+          {/*{createField(*/}
+          {/*  "Название",*/}
+          {/*  "name",*/}
+          {/*  [required, maxLengthValidator(40)],*/}
+          {/*  Input,*/}
+          {/*  {},*/}
+          {/*  "",*/}
+          {/*  document.name,*/}
+          {/*  updateFormData*/}
+          {/*)}*/}
+        {/*</div>*/}
         <div>
           <span>Регистрационный номер: </span>
           {createField(
@@ -433,7 +647,8 @@ const IncomingDocumentDataForm = ({
           {document.links}
         </div>
       </div>
-    </form>
+    {/*</form>*/}
+        </>
   );
 };
 

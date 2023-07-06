@@ -2,6 +2,9 @@ import React from "react";
 
 import { FieldValidatorType } from "@utils/validators/validators";
 import { Field, WrappedFieldMetaProps, WrappedFieldProps } from "redux-form";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 
 function createField<FormKeysType extends string>(
   placeholder: string | undefined,
@@ -65,7 +68,23 @@ export const Input: React.FC<WrappedFieldProps> = (props) => {
   const { input, meta } = props;
   return (
     <FormControl {...props}>
-      <input {...input} {...props} />
+      <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          noValidate
+          autoComplete="off"
+      >
+          <TextField
+              // required
+              id="outlined-required"
+              label="Required"
+              // defaultValue="Hello World"
+              {...input} {...props}
+          />
+      </Box>
+      {/*<input {...input} {...props} />*/}
     </FormControl>
   );
 };

@@ -3,7 +3,8 @@ import React from "react";
 import Excel from "exceljs";
 import { saveAs } from "file-saver";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
+import "react-confirm-alert/src/react-confirm-alert.css"
+import Button from '@mui/material/Button';
 
 export const ExportToExel = ({ data }: any) => {
   const columns = [
@@ -100,53 +101,8 @@ export const ExportToExel = ({ data }: any) => {
   };
 
   return (
-    <>
-      <style>
-        {`
-            table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            textAlign: center;
-          }
-           th, td { 
-             padding: 4px;
-           }
-        `}
-      </style>
-      <div
-      // style={{ textAlign: "center" }}
-      >
-        {/*<div>*/}
-        {/*  /!*Export to excel from table*!/*/}
-        {/*  <br />*/}
-        {/*  <br />*/}
-        {/*  Export to : <input id={myInputId} defaultValue={workBookName} /> .xlsx*/}
-        {/*</div>*/}
-        {/*<br />*/}
-        <div>
-          <button onClick={ExportConfirmation}>Export</button>
-        </div>
-        {/*<br />*/}
-        {/*<div>*/}
-        {/*  <table style={{ margin: "0 auto" }}>*/}
-        {/*    <tr>*/}
-        {/*      {columns.map(({ header }) => {*/}
-        {/*        return <th>{header}</th>;*/}
-        {/*      })}*/}
-        {/*    </tr>*/}
-        {/*    {data.map((uniqueData: any) => {*/}
-        {/*      return (*/}
-        {/*        <tr>*/}
-        {/*          {Object.entries(uniqueData).map((eachData) => {*/}
-        {/*            const value: any = eachData[1];*/}
-        {/*            return <td>{value}</td>;*/}
-        {/*          })}*/}
-        {/*        </tr>*/}
-        {/*      );*/}
-        {/*    })}*/}
-        {/*  </table>*/}
-        {/*</div>*/}
-      </div>
-    </>
+    <div>
+          <Button size="medium" onClick={ExportConfirmation}>Export</Button>
+    </div>
   );
 };

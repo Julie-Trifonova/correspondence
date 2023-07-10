@@ -1,0 +1,24 @@
+.box {
+    padding: 10px;
+    display: block;
+    /*margin: auto;*/
+    margin-left: 10px;
+}
+
+@media (min-width: 1201px) {
+    .box {
+        width: 360px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+    .box {
+        width: 57%;
+    }
+}
+
+@media (max-width: 640px) {
+    .box {
+        width: 80%;
+    }
+}

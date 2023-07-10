@@ -28,7 +28,7 @@ export const Paginator = ({
   return (
     <div className={s.left_button}>
       {portionNumber > 1 && (
-        <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}} color="success" aria-label="change portion back">
+        <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}} style={{color: "#22848a"}} aria-label="change portion back">
         <ArrowBackIosNewIcon/>
         </IconButton>
       )}
@@ -39,14 +39,14 @@ export const Paginator = ({
         )
         .map((p) => {
           return (
-              <IconButton className={s.page_number} key={p} onClick={() => onPageChanged(p)} color="success" aria-label="change page">
+              <IconButton className={s.page_number} key={p} onClick={() => onPageChanged(p)} style={{color: "#22848a"}} aria-label="change page">
                 {p}
               </IconButton>
           );
         })}
 
       {portionCount > portionNumber && (
-          <IconButton onClick={() => {setPortionNumber(portionNumber + 1)}} color="success" aria-label="change portion forward">
+          <IconButton onClick={() => {setPortionNumber(portionNumber + 1)}} style={{color: "#22848a"}} aria-label="change portion forward">
               <ArrowForwardIosIcon/>
           </IconButton>
           )}

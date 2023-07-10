@@ -23,7 +23,7 @@ import {confirmAlert} from "react-confirm-alert";
 export const bull = (<Box component="span" sx={{display: 'inline-block', mx: '2px', transform: 'scale(0.8)'}}>•</Box>);
 export const unspecified = () => {
     return (
-        <Typography sx={{fontSize: 18}} color="primary" component="span">
+        <Typography sx={{fontSize: 18}} color="secondary" component="span">
             Не указано
         </Typography>
     )

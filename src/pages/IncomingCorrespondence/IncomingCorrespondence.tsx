@@ -6,7 +6,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import s from "./IncomingCorrespondence.module.css";
 import { IncomingCorrespondenceFilterForm } from "./IncomingCorrespondenceFilterForm";
-import { DeleteConfirmation } from "../../common/DeleteConfirmation/DeleteConfirmation";
 import { Paginator } from "../../common/Paginator/Paginator";
 import { Preloader } from "../../common/Preloader/Preloader";
 import {
@@ -25,7 +24,6 @@ import {
 } from "../../redux/incomingCorrespondenceReducer";
 
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type QueryParamsType = {
@@ -155,7 +153,6 @@ const IncomingCorrespondence = () => {
         portionSize={2}
       />
       <div>
-        <div></div>
         <Link
           to={`${totalDocumentsCount + 1}`}
           state={{ newDocument: newDocument }}

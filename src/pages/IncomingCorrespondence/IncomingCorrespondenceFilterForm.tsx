@@ -10,8 +10,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import {IconButton} from "@mui/material";
-
-
+import AutocompleteIntroduction from "./SearchFilter";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ClearIcon from '@mui/icons-material/Clear';
+import s from './IncomingCorrespondenceFilterForm.module.css'
 
 type FormType = {
     term: string;
@@ -55,17 +57,18 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({
             >
                 {({isSubmitting}) => (
                     <Form>
-                        <Field name="term" type="text"/>
-                        <Field name="type" as="select">
-                            <option value={""}>Все документы</option>
-                            <option value={"q"}>Совпадения в тексте</option>
-                            <option value={"name"}>Название</option>
-                            <option value={"urgency"}>Срочность</option>
-                            <option value={"registrationNumber"}>Регистрационный номер</option>
-                            <option value={"updateTime"}>Дата обновления</option>
-                            <option value={"registrationDate"}>Дата регистрации</option>
-                            <option value={"deliveryDate"}>Дата получения</option>
+                        <Field className={s.text_box} name="term" type="text"/>
+                        <Field className={s.filter_box} name="type" as="select">
+                            <option className={s.select} value={""}>Все документы</option>
+                            <option className={s.select} value={"q"}>Совпадения в тексте</option>
+                            <option className={s.select} value={"name"}>Название</option>
+                            <option className={s.select} value={"urgency"}>Срочность</option>
+                            <option className={s.select} value={"registrationNumber"}>Регистрационный номер</option>
+                            <option className={s.select} value={"updateTime"}>Дата обновления</option>
+                            <option className={s.select} value={"registrationDate"}>Дата регистрации</option>
+                            <option className={s.select} value={"deliveryDate"}>Дата получения</option>
                         </Field>
+                            <ArrowDropDownIcon />
                         <IconButton type="submit" disabled={isSubmitting} color="success" aria-label="search and filter">
                             <SearchIcon />
                         </IconButton>

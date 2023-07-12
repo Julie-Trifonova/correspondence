@@ -38,7 +38,7 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
     //     setSubmitting(false);
     // };
     const onSubmit = () => {
-        // debugger
+        debugger
         const filter: FilterType = {
             term: inputData.inputTerm,
             type: inputData.inputType,
@@ -76,7 +76,6 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                 {/*     // enableReinitialize={true}*/}
                 {/*     // validate={filterFormValidate}*/}
                 {/*>*/}
-                    {/*<FormControl onSubmit={onSubmit}>*/}
                     <Formik
                         initialValues={{
                             term: inputData.inputTerm,
@@ -86,6 +85,7 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                         enableReinitialize={true}
                         validate={filterFormValidate}
                     >
+                        {({isSubmitting}) => (
                         <Form>
                     <TextField className={s.text_box}
                                label="Outlined secondary"
@@ -109,49 +109,20 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                         // helperText="Please select your currency"
                         >
                       {currencies.map((option) => (
-                            <MenuItem key={option.value} value={option.value}>
+                            <MenuItem className={s.select} key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>))}
                     </TextField>
 
                 <IconButton type="submit"
-                            // disabled={isSubmitting}
+                            disabled={isSubmitting}
                             color="success" aria-label="search and filter">
                     <SearchIcon />
                 </IconButton>
-                {/*<AutocompleteIntroduction/>*/}
-                            {/*    </FormControl>*/}</Form></Formik>
+                        </Form>
+                        )}
+                    </Formik>
                 {/*</Box>*/}
-
-            {/*<Formik*/}
-            {/*    initialValues={{*/}
-            {/*        term: filter.term,*/}
-            {/*        type: filter.type,*/}
-            {/*    }}*/}
-            {/*    onSubmit={onSubmit}*/}
-            {/*    enableReinitialize={true}*/}
-            {/*    validate={filterFormValidate}*/}
-            {/*>*/}
-            {/*    {({isSubmitting}) => (*/}
-            {/*        <Form>*/}
-            {/*            <Field className={s.text_box} name="term" type="text"/>*/}
-            {/*            <Field className={s.filter_box} name="type" as="select">*/}
-            {/*                <option className={s.select} value={""}>Все документы</option>*/}
-            {/*                <option className={s.select} value={"q"}>Совпадения в тексте</option>*/}
-            {/*                <option className={s.select} value={"name"}>Название</option>*/}
-            {/*                <option className={s.select} value={"urgency"}>Срочность</option>*/}
-            {/*                <option className={s.select} value={"registrationNumber"}>Регистрационный номер</option>*/}
-            {/*                <option className={s.select} value={"updateTime"}>Дата обновления</option>*/}
-            {/*                <option className={s.select} value={"registrationDate"}>Дата регистрации</option>*/}
-            {/*                <option className={s.select} value={"deliveryDate"}>Дата получения</option>*/}
-            {/*            </Field>*/}
-            {/*                /!*<ArrowDropDownIcon />*!/*/}
-            {/*            <IconButton type="submit" disabled={isSubmitting} color="success" aria-label="search and filter">*/}
-            {/*                <SearchIcon />*/}
-            {/*            </IconButton>*/}
-            {/*        </Form>*/}
-            {/*    )}*/}
-            {/*</Formik>*/}
         </div>
     );
 };

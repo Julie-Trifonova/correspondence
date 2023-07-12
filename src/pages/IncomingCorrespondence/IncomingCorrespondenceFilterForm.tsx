@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import {Field, Form, Formik, useField} from "formik";
+import {Form, Formik} from "formik";
 import {useSelector} from "react-redux";
 
 import {getDocumentsFilter} from "../../redux/documentsSelectors";
@@ -8,8 +8,6 @@ import {FilterType} from "../../redux/incomingCorrespondenceReducer";
 import SearchIcon from '@mui/icons-material/Search';
 import {IconButton} from "@mui/material";
 import s from './IncomingCorrespondenceFilterForm.module.css'
-import FormControl from "@mui/base/FormControl";
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -27,24 +25,15 @@ type PropsType = {
 
 export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterChanged}) => {
     const filter = useSelector(getDocumentsFilter);
-    const [inputData, setInputData] = useState({inputTerm: '', inputType: ''})
+    const [inputData, setInputData] = useState({inputTerm: filter.term, inputType: filter.type})
 
-    // const onSubmit = (values: FormType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
-    //     const filter: FilterType = {
-    //         term: values.term,
-    //         type: values.type,
-    //     };
-    //     onFilterChanged(filter);
-    //     setSubmitting(false);
-    // };
-    const onSubmit = () => {
-        debugger
+    const onSubmit = (values: { term: string; type: string; }, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         const filter: FilterType = {
             term: inputData.inputTerm,
             type: inputData.inputType,
         };
         onFilterChanged(filter);
-        // setSubmitting(false);
+        setSubmitting(false);
     };
 
     const onChangeTermInput = (e: any) => {
@@ -65,17 +54,6 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
 
     return (
         <div>
-                {/*<Box component="form" sx={{'& > :not(style)': { m: 1, width: '25ch' },}}*/}
-                {/*     noValidate*/}
-                {/*     autoComplete="off"*/}
-                {/*     // initialValues={{*/}
-                {/*     //     term: filter.term,*/}
-                {/*     //     type: filter.type,*/}
-                {/*     // }}*/}
-                {/*     // onSubmit={onSubmit}*/}
-                {/*     // enableReinitialize={true}*/}
-                {/*     // validate={filterFormValidate}*/}
-                {/*>*/}
                     <Formik
                         initialValues={{
                             term: inputData.inputTerm,
@@ -122,7 +100,6 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                         </Form>
                         )}
                     </Formik>
-                {/*</Box>*/}
         </div>
     );
 };

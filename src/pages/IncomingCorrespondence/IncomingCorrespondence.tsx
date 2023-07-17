@@ -25,6 +25,7 @@ import {
 
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddIcon from '@mui/icons-material/Add';
 
 type QueryParamsType = {
   filter: { type?: string };
@@ -157,8 +158,25 @@ const IncomingCorrespondence = () => {
           to={`${totalDocumentsCount + 1}`}
           state={{ newDocument: newDocument }}
         >
-          <Button variant="outlined" endIcon={<AddCircleOutlineIcon />}>
-            Добавить
+          <Button variant="outlined"
+                  startIcon={<AddIcon />}
+                  sx={{
+                    width: '140px',
+                    height: '30px',
+                    boxSizing: 'border-box',
+                    fontFamily: 'IBM Plex Sans, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    borderRadius: '8px',
+                    color: '#224d3a',
+                    letterSpacing: '1px',
+                    background: '#b1d0c3',
+                    border: `${0.5}px solid ${'#224d3a'}`,
+                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
+                    '&:hover': {color: '#830B2D'}
+          }}
+          >
+            Документ
           </Button>
         </Link>
       </div>

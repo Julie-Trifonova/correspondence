@@ -10,6 +10,13 @@ import {IconButton} from "@mui/material";
 import s from './IncomingCorrespondenceFilterForm.module.css'
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Input from "@mui/base/Input";
+import {styled} from "@mui/system";
+import Select, { SelectProps, selectClasses } from '@mui/base/Select';
+import { SelectOption } from '@mui/base/useOption';
+import Option, { optionClasses } from '@mui/base/Option';
+import Popper from '@mui/base/Popper';
+
 
 type FormType = {
     term: string;
@@ -26,6 +33,7 @@ type PropsType = {
 export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterChanged}) => {
     const filter = useSelector(getDocumentsFilter);
     const [inputData, setInputData] = useState({inputTerm: filter.term, inputType: filter.type})
+    const [state, setState] = useState(false)
 
     const onSubmit = (values: { term: string; type: string; }, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
         const filter: FilterType = {
@@ -39,18 +47,21 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
     const onChangeTermInput = (e: any) => {
         console.log(e.target.value)
         setInputData({...inputData, inputTerm: e.target.value})
+        setState(true)
     }
     const onChangeTypeInput= (e: any) => {
-        console.log(e.target.value)
-        setInputData({...inputData, inputType: e.target.value})
-    }
+        // console.log(e.target.value)
+        console.log(e.target.innerText)
+        if (e.target.innerText === 'Совпадения в тексте') {
+            setInputData({...inputData, inputType: 'q'})
+        } else if (e.target.innerText === 'Название') {
+            setInputData({...inputData, inputType: 'name'})
+        } else if (e.target.innerText === 'Срочность') {
+            setInputData({...inputData, inputType: 'urgency'})
+        }
 
-    const currencies = [
-            { label: 'Все документы', value: "" },
-            { label: 'Совпадения в тексте', value: "q" },
-            { label: 'Название', value: "name" },
-            { label: 'Срочность', value: "urgency" },
-    ];
+        setState(true)
+    }
 
     return (
         <div>
@@ -64,42 +75,230 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                         validate={filterFormValidate}
                     >
                         {({isSubmitting}) => (
-                        <Form>
-                    <TextField className={s.text_box}
-                               label="Outlined secondary"
-                               color="secondary"
-                               focused
-                               name='term'
-                               // placeholder=''
-                        onChange={(e) => {onChangeTermInput(e)}}
-                    />
-                    <TextField
-                        className={s.filter_box}
-                        id="outlined-select-currency"
-                        select
-                        label="Тип сортировки"
-                        defaultValue="q"
-                        name='type'
-                        onChange={(e) => {onChangeTypeInput(e)}}
-                        // placeholder=''
-                        // value
-                        // checked
-                        // helperText="Please select your currency"
-                        >
-                      {currencies.map((option) => (
-                            <MenuItem className={s.select} key={option.value} value={option.value}>
-                                {option.label}
-                            </MenuItem>))}
-                    </TextField>
-
-                <IconButton type="submit"
-                            disabled={isSubmitting}
-                            color="success" aria-label="search and filter">
-                    <SearchIcon />
-                </IconButton>
-                        </Form>
+                            <Form className={s.form}>
+                                <UnstyledInputIntroduction className={s.text_input} onChangeTermInput={onChangeTermInput}/>
+                                <div></div>
+                                <UnstyledSelectCustomRenderValue className={s.filter_input} onChangeTypeInput={onChangeTypeInput}/>
+                                <IconButton type="submit"
+                                            className={s.button_form}
+                                            disabled={isSubmitting}
+                                            sx={{color: '#224d3a', marginTop: '8px', '&:hover': {color: '#830B2D'}}}
+                                            aria-label="search and filter">
+                                    <SearchIcon fontSize= 'large'/>
+                                </IconButton>
+                            </Form>
                         )}
                     </Formik>
         </div>
     );
 };
+
+
+
+const CustomInput = React.forwardRef(function CustomInput(
+    props: React.InputHTMLAttributes<HTMLInputElement>,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
+    return <Input slots={{ input: StyledInputElement }}
+                  {...props}
+                  ref={ref}
+    />;
+});
+
+function UnstyledInputIntroduction({onChangeTermInput}: any) {
+    return <CustomInput name='term'
+                        onChange={(e) => {
+                            onChangeTermInput(e)}}
+                        aria-label="Demo input"
+                        placeholder="Что ищем?"/>;
+}
+
+// color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
+// background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+// border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+
+const StyledInputElement = styled('input')(
+    ({ theme }) => `
+    width: 320px;
+    height: 50px;
+    box-sizing: border-box;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: ${'#830B2D'};
+  letter-spacing: 1px;
+  background: ${'#b1d0c3'};
+  border: 0.5px solid ${'#224d3a'};
+  box-shadow: 0px 2px 2px ${'#99b9fd'};
+
+  &:hover {
+    cursor: pointer;
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+    box-shadow: 0px 4px 4px ${'#99b9fd'};
+  }
+
+  &:focus {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+    box-shadow: 0px 4px 4px ${'#99b9fd'};
+  }
+
+  // firefox
+  &:focus-visible {
+    outline: 0;
+  }
+`,
+);
+
+function UnstyledSelectCustomRenderValue({onChangeTypeInput}: any) {
+    return (
+        <CustomSelect renderValue={renderValue}
+                      name='type'
+                      onChange={(e) => {
+                          onChangeTypeInput(e);
+                      }}>
+            <StyledOption value={10}>Совпадения в тексте</StyledOption>
+            <StyledOption value={20}>Название</StyledOption>
+            <StyledOption value={30}>Срочность</StyledOption>
+        </CustomSelect>
+    );
+}
+
+function CustomSelect(props: SelectProps<number, false>) {
+    const slots: SelectProps<number, false>['slots'] = {
+        root: StyledButton,
+        listbox: StyledListbox,
+        popper: StyledPopper,
+        ...props.slots,
+    };
+
+    return <Select {...props} slots={slots} />;
+}
+
+function renderValue(option: SelectOption<number | string> | null ) {
+    if (option == null) {
+        return <span>Тип сортировки</span>;
+    }
+
+    return (
+        <span>
+      {option.label}
+    </span>
+    );
+}
+
+const StyledButton = styled('button')(
+    ({ theme }) => `
+    width: 320px;
+    height: 50px;
+    margin-top: 8px;
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 12px;
+  text-align: left;
+  line-height: 1.5;
+  border-radius: 8px;
+  color: ${'#830B2D'};
+  letter-spacing: 1px;
+  background: ${'#b1d0c3'};
+  border: 0.5px solid ${'#224d3a'};
+  box-shadow: 0px 2px 2px ${'#99b9fd'};
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 120ms;
+
+  &:hover {
+    cursor: pointer;
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+    box-shadow: 0px 4px 4px ${'#99b9fd'};
+  }
+  
+  &.${selectClasses.focusVisible} {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+    box-shadow: 0px 4px 4px ${'#99b9fd'};
+  }
+
+  &.${selectClasses.expanded} {
+    &::after {
+      content: '▴';
+    }
+  }
+
+  &::after {
+    content: '▾';
+    float: right;
+  }
+  `,
+);
+
+const StyledListbox = styled('ul')(
+    ({ theme }) => `
+  overflow: auto;
+  outline: 0px;
+  width: 320px;
+    min-height: calc(1.5em + 22px);
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 12px;
+  text-align: left;
+  line-height: 1.5;
+  border-radius: 8px;
+  color: ${'#830B2D'};
+  letter-spacing: 1px;
+  background: ${'#b1d0c3'};
+  border: 0.5px solid ${'#224d3a'};
+  box-shadow: 0px 2px 2px ${'#99b9fd'};
+  `,
+);
+
+const StyledOption = styled(Option)(
+    ({ theme }) => `
+  list-style: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: default;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &.${optionClasses.selected} {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+    border: 0.5px solid ${'#224d3a'};
+  }
+
+  &.${optionClasses.highlighted} {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+  }
+
+  &.${optionClasses.highlighted}.${optionClasses.selected} {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+  }
+
+  &.${optionClasses.disabled} {
+    color: grey;
+  }
+
+  &:hover:not(.${optionClasses.disabled}) {
+    background: ${'#99b9fd'};
+    color: ${'#ffffff'};
+  }  
+  `,
+);
+
+const StyledPopper = styled(Popper)`
+  z-index: 1;
+`;

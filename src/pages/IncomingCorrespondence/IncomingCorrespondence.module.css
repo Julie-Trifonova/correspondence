@@ -5,3 +5,26 @@
     /*position: absolute;*/
     /*z-index: 3;*/
 }
+
+
+/*@media (min-width: 1201px) {*/
+/*    .form {*/
+/*        !*width: 800px;*!*/
+/*        !*grid-template-columns: 1.5fr 1fr 0.2fr;*!*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 641px) and (max-width: 1200px) {*/
+/*    .form {*/
+/*        !*width: 30%;*!*/
+/*        !*grid-template-columns: 320px 320px 40px;*!*/
+/*    }*/
+/*}*/
+
+/*@media (max-width: 640px) {*/
+/*    .form {*/
+/*        !*width: 400px;*!*/
+/*        !*grid-template-columns: 320px;*!*/
+/*        !*grid-template-rows: 1fr 1fr;*!*/
+/*    }*/
+/*}*/

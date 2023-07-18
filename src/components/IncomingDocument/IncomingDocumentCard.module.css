@@ -1,23 +1,25 @@
+.link_to_card_box{
+    text-decoration: none;
+}
+
 .box {
-    padding: 10px;
-    display: block;
-    margin: 10px auto;
+    margin: 0 auto;
 }
 
 @media (min-width: 1201px) {
     .box {
-        width: 360px;
+        width: 800px;
     }
 }
 
 @media (min-width: 641px) and (max-width: 1200px) {
     .box {
-        width: 57%;
+        width: 70%;
     }
 }
 
 @media (max-width: 640px) {
     .box {
-        width: 80%;
+        width: 470px;
     }
 }

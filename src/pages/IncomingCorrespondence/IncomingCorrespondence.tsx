@@ -166,18 +166,23 @@ const IncomingCorrespondence = () => {
                     boxSizing: 'border-box',
                     fontFamily: 'IBM Plex Sans, sans-serif',
                     fontSize: '14px',
-                    fontWeight: 400,
+                    fontWeight: 'bold',
                     borderRadius: '8px',
-                    color: '#224d3a',
+                    color: '#645A38',
                     letterSpacing: '1px',
-                    background: '#b1d0c3',
-                    border: `${0.5}px solid ${'#224d3a'}`,
+                    background: '#F4E2DB',
+                    border: `${0.5}px solid transparent`,
                     boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                    '&:hover': {color: '#830B2D'}
+                    '&:hover': {
+                      color: '#4F1DC7',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      background: '#DAC5E2',
+                      boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
+                      borderColor: 'transparent'
+                    }
           }}
-          >
-            Документ
-          </Button>
+          >Документ</Button>
         </Link>
       </div>
       <div>

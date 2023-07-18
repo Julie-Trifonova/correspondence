@@ -82,7 +82,14 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                                 <IconButton type="submit"
                                             className={s.button_form}
                                             disabled={isSubmitting}
-                                            sx={{color: '#224d3a', marginTop: '8px', '&:hover': {color: '#830B2D'}}}
+                                            sx={{
+                                                color: '#6292ff',
+                                                marginTop: '8px',
+                                                transitionProperty: 'all',
+                                                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                                                transitionDuration: '400ms',
+                                                '&:hover': {color: '#3980a9'}
+                                }}
                                             aria-label="search and filter">
                                     <SearchIcon fontSize= 'large'/>
                                 </IconButton>
@@ -131,8 +138,11 @@ const StyledInputElement = styled('input')(
   color: ${'#830B2D'};
   letter-spacing: 1px;
   background: ${'#b1d0c3'};
-  border: 0.5px solid ${'#224d3a'};
+  border: 0.5px solid transparent;
   box-shadow: 0px 2px 2px ${'#99b9fd'};
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
 
   &:hover {
     cursor: pointer;
@@ -207,11 +217,11 @@ const StyledButton = styled('button')(
   color: ${'#830B2D'};
   letter-spacing: 1px;
   background: ${'#b1d0c3'};
-  border: 0.5px solid ${'#224d3a'};
+  border: 0.5px solid transparent;
   box-shadow: 0px 2px 2px ${'#99b9fd'};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 120ms;
+  transition-duration: 400ms;
 
   &:hover {
     cursor: pointer;
@@ -224,6 +234,7 @@ const StyledButton = styled('button')(
     background: ${'#99b9fd'};
     color: ${'#ffffff'};
     box-shadow: 0px 4px 4px ${'#99b9fd'};
+    border: 1px solid ${'#338396'};
   }
 
   &.${selectClasses.expanded} {
@@ -256,7 +267,7 @@ const StyledListbox = styled('ul')(
   color: ${'#830B2D'};
   letter-spacing: 1px;
   background: ${'#b1d0c3'};
-  border: 0.5px solid ${'#224d3a'};
+  border: 1px solid ${'#224d3a'};
   box-shadow: 0px 2px 2px ${'#99b9fd'};
   `,
 );
@@ -275,7 +286,7 @@ const StyledOption = styled(Option)(
   &.${optionClasses.selected} {
     background: ${'#99b9fd'};
     color: ${'#ffffff'};
-    border: 0.5px solid ${'#224d3a'};
+    border: 1px solid ${'#224d3a'};
   }
 
   &.${optionClasses.highlighted} {

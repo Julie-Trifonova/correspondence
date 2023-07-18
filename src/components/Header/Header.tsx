@@ -33,6 +33,9 @@ export const Header = () => {
   border: none;
   opacity: 0.6;
   box-shadow: 0 2px 2px #848d84;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 400ms;
 
   &:hover {
     background-color: ${blue[600]};

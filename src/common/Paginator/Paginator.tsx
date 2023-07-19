@@ -26,9 +26,18 @@ export const Paginator = ({
   let rightPortionPageNumber = portionNumber * portionSize;
 
   return (
-    <div className={s.left_button}>
+    <div className={s.paginator}>
       {portionNumber > 1 && (
-        <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}} style={{color: "#22848a"}} aria-label="change portion back">
+        <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}}
+                    aria-label="change portion back"
+                    sx={{
+                      color: '#6292ff',
+                      transitionProperty: 'all',
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                      transitionDuration: '120ms',
+                      '&:hover': {color: '#3980a9'},
+                    }}
+        >
         <ArrowBackIosNewIcon/>
         </IconButton>
       )}
@@ -39,14 +48,33 @@ export const Paginator = ({
         )
         .map((p) => {
           return (
-              <IconButton className={s.page_number} key={p} onClick={() => onPageChanged(p)} style={{color: "#22848a"}} aria-label="change page">
+              <IconButton className={s.page_number}
+                          key={p}
+                          onClick={() => onPageChanged(p)}
+                          aria-label="change page"
+                          sx={{
+                            color: '#6292ff',
+                            transitionProperty: 'all',
+                            transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                            transitionDuration: '120ms',
+                            '&:hover': {color: '#3980a9'},
+                          }}
+              >
                 {p}
               </IconButton>
           );
         })}
 
       {portionCount > portionNumber && (
-          <IconButton onClick={() => {setPortionNumber(portionNumber + 1)}} style={{color: "#22848a"}} aria-label="change portion forward">
+          <IconButton onClick={() => {setPortionNumber(portionNumber + 1)}}
+                      sx={{
+                        color: '#6292ff',
+                        transitionProperty: 'all',
+                        transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                        transitionDuration: '120ms',
+                        '&:hover': {color: '#3980a9'},
+                      }}
+                      aria-label="change portion forward">
               <ArrowForwardIosIcon/>
           </IconButton>
           )}

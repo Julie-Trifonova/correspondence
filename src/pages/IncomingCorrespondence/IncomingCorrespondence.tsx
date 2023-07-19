@@ -146,7 +146,7 @@ const IncomingCorrespondence = () => {
       {isFetching ? <Preloader /> : null}
       <IncomingCorrespondenceFilterForm onFilterChanged={onFilterChanged} />
       <Paginator
-        className={s.paginator}
+        className={s.paginator_box}
         totalDocumentsCount={totalDocumentsCount}
         pageSize={pageSize}
         currentPage={currentPage}
@@ -185,7 +185,7 @@ const IncomingCorrespondence = () => {
           >Документ</Button>
         </Link>
       </div>
-      <div>
+      <div className={s.cards}>
         {documents.map((d: any) => (
           <div>
             <IncomingDocumentCard document={d} />
@@ -193,7 +193,7 @@ const IncomingCorrespondence = () => {
         ))}
       </div>
       <Paginator
-          className={s.paginator}
+          className={s.paginator_box}
           totalDocumentsCount={totalDocumentsCount}
           pageSize={pageSize}
           currentPage={currentPage}

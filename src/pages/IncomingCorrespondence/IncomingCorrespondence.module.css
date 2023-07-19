@@ -1,8 +1,31 @@
-.paginator {
-    display: block;
-    width: 300px;
-    background-color: #61dafb;
-    /*position: absolute;*/
-    /*z-index: 3;*/
+.paginator_box {
+
 }
 
+.cards {
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    /*background: #C0D61A;*/
+    /*border: 10px solid #C0D61A;*/
+    /*box-shadow: 0px 2px 2px #99b9fd;*/
+}
+
+@media (min-width: 1201px) {
+    .cards {
+        width: 800px;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1200px) {
+    .cards {
+        width: 70%;
+    }
+}
+
+@media (max-width: 640px) {
+    .cards {
+        width: 470px;
+    }
+}

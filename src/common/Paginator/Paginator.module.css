@@ -1,13 +1,6 @@
-.left_button {
+.paginator {
     display: block;
-    margin-top: 20px;
-    margin-left: 20px;
-    font-size: 20px;
-}
-
-.page_number:nth-child(n + 2) {
-    margin-left: 5px;
-}
-.page_number:hover {
-    cursor: pointer;
+    width: 100px;
+    margin: 0 auto;
+    padding: 25px;
 }

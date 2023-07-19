@@ -37,8 +37,8 @@ export const IncomingDocumentCard = ({ document }: any) => {
                   sx={{
                       margin: '20px',
                       boxSizing: 'border-box',
-                      borderRadius: '8px',
-                      background: '#eff4db',
+                      borderRadius: '1px',
+                      background: '#fcffe2',
                       border: `${4}px solid transparent`,
                       boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
                       display: 'block',
@@ -48,7 +48,7 @@ export const IncomingDocumentCard = ({ document }: any) => {
                       '&:hover': {
                           cursor: 'pointer',
                           boxShadow: `${0}px ${6}px ${6}px ${'#99b9fd'}`,
-                          border: `${4}px solid ${'#dfeabb'}`,
+                          border: `${4}px solid ${'#b4b141'}`,
                       }
                   }}
             >
@@ -64,7 +64,7 @@ export const IncomingDocumentCard = ({ document }: any) => {
                         borderRadius: '8px',
                         color: '#645A38',
                         letterSpacing: '1px',
-                        background: '#F4E2DB',
+                        background: '#fff376',
                         border: `${0.5}px solid transparent`,
                         boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
                     }}>
@@ -138,9 +138,9 @@ export const IncomingDocumentCard = ({ document }: any) => {
                     flexDirection: 'row-reverse',
                 }}>
                     <Button onClick={() => {DeleteConfirmation(dispatch, deleteIncomingDocument(document.id));}}
+                            size='small'
                             sx={{
                                 boxSizing: 'border-box',
-                                fontSize: 'medium',
                                 color: '#627957',
                                 background: 'transparent',
                                 boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,

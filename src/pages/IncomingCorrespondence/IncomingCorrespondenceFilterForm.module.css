@@ -1,7 +1,5 @@
 .form {
     display: grid;
-    margin-left: 20px;
-    margin-top: 20px;
     width: 425px;
     grid-template-columns: 320px 60px;
     grid-template-rows: 1fr 1fr;

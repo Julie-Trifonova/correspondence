@@ -6,18 +6,18 @@
 
 @media (min-width: 1201px) {
     .box {
-        width: 360px;
+        width: 600px;
     }
 }
 
 @media (min-width: 641px) and (max-width: 1200px) {
     .box {
-        width: 57%;
+        width: 500px;
     }
 }
 
 @media (max-width: 640px) {
     .box {
-        width: 80%;
+        width: 360px;
     }
 }

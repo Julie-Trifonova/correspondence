@@ -38,7 +38,7 @@ export const IncomingDocumentCard = ({ document }: any) => {
                       margin: '20px',
                       boxSizing: 'border-box',
                       borderRadius: '1px',
-                      background: '#fcffe2',
+                      background: '#ffffee',
                       border: `${4}px solid transparent`,
                       boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
                       display: 'block',
@@ -64,7 +64,7 @@ export const IncomingDocumentCard = ({ document }: any) => {
                         borderRadius: '8px',
                         color: '#645A38',
                         letterSpacing: '1px',
-                        background: '#fff376',
+                        background: '#F4E2DB',
                         border: `${0.5}px solid transparent`,
                         boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
                     }}>

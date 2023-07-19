@@ -30,6 +30,7 @@ export const Paginator = ({
       {portionNumber > 1 && (
         <IconButton onClick={() => {setPortionNumber(portionNumber - 1)}}
                     aria-label="change portion back"
+                    size='medium'
                     sx={{
                       color: '#6292ff',
                       transitionProperty: 'all',
@@ -52,6 +53,7 @@ export const Paginator = ({
                           key={p}
                           onClick={() => onPageChanged(p)}
                           aria-label="change page"
+                          size='medium'
                           sx={{
                             color: '#6292ff',
                             transitionProperty: 'all',
@@ -74,7 +76,9 @@ export const Paginator = ({
                         transitionDuration: '120ms',
                         '&:hover': {color: '#3980a9'},
                       }}
-                      aria-label="change portion forward">
+                      aria-label="change portion forward"
+                      size='medium'
+          >
               <ArrowForwardIosIcon/>
           </IconButton>
           )}

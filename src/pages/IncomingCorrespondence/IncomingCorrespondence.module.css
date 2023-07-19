@@ -1,5 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+.add_button_box {
+    display: flex;
+    flex-direction: column-reverse;
+}
 .paginator_box {
-
+    display: block;
+    width: 100%;
+    margin: 25px 0;
+    border-style: solid;
+    border-color: #ece3be;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+.paginator_box_top {
+    border-width: 0 0 4px 0;
+}
+.paginator_box_bottom {
+    border-width: 4px 0 0 0;
 }
 
 .cards {
@@ -16,11 +37,17 @@
     .cards {
         width: 800px;
     }
+    .header {
+        padding: 20px 160px;
+    }
 }
 
 @media (min-width: 641px) and (max-width: 1200px) {
     .cards {
         width: 70%;
+    }
+    .header {
+        padding: 20px 100px;
     }
 }
 
@@ -28,4 +55,12 @@
     .cards {
         width: 470px;
     }
+    .header {
+        display: block;
+        padding: 20px;
+    }
+    .add_button_box {
+        margin-top: 20px;
+    }
+
 }

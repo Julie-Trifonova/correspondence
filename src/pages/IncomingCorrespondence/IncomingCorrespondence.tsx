@@ -144,46 +144,50 @@ const IncomingCorrespondence = () => {
   return (
     <div>
       {isFetching ? <Preloader /> : null}
+    <div className={s.header}>
       <IncomingCorrespondenceFilterForm onFilterChanged={onFilterChanged} />
+      <div className={s.add_button_box}>
+        <Link
+            to={`${totalDocumentsCount + 1}`}
+            state={{ newDocument: newDocument }}
+        >
+          <Button variant="outlined"
+                  startIcon={<AddIcon />}
+                  sx={{
+                    width: '140px',
+                    height: '50px',
+                    boxSizing: 'border-box',
+                    fontFamily: 'IBM Plex Sans, sans-serif',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    // borderRadius: '8px',
+                    color: '#645A38',
+                    letterSpacing: '1px',
+                    // background: '#F4E2DB',
+                    border: `${0.5}px solid ${'#F4E2DB'}`,
+                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
+                    '&:hover': {
+                      color: '#4F1DC7',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      // background: '#DAC5E2',
+                      boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
+                      border: `${5}px solid ${'#99b9fd'}`,
+                      // border: `${5}px solid ${'#b1d0c3'}`,
+                    }
+                  }}
+          >Документ</Button>
+        </Link>
+      </div>
+    </div>
+      <div className={`${s.paginator_box_top} ${s.paginator_box}`}>
       <Paginator
-        className={s.paginator_box}
         totalDocumentsCount={totalDocumentsCount}
         pageSize={pageSize}
         currentPage={currentPage}
         onPageChanged={onPageChanged}
         portionSize={2}
       />
-      <div>
-        <Link
-          to={`${totalDocumentsCount + 1}`}
-          state={{ newDocument: newDocument }}
-        >
-          <Button variant="outlined"
-                  startIcon={<AddIcon />}
-                  sx={{
-                    width: '140px',
-                    height: '30px',
-                    boxSizing: 'border-box',
-                    fontFamily: 'IBM Plex Sans, sans-serif',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    borderRadius: '8px',
-                    color: '#645A38',
-                    letterSpacing: '1px',
-                    background: '#F4E2DB',
-                    border: `${0.5}px solid transparent`,
-                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                    '&:hover': {
-                      color: '#4F1DC7',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
-                      background: '#DAC5E2',
-                      boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
-                      borderColor: 'transparent'
-                    }
-          }}
-          >Документ</Button>
-        </Link>
       </div>
       <div className={s.cards}>
         {documents.map((d: any) => (
@@ -192,14 +196,15 @@ const IncomingCorrespondence = () => {
           </div>
         ))}
       </div>
+      <div className={`${s.paginator_box_bottom} ${s.paginator_box}`}>
       <Paginator
-          className={s.paginator_box}
           totalDocumentsCount={totalDocumentsCount}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           portionSize={2}
       />
+      </div>
     </div>
   );
 };

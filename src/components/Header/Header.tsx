@@ -12,18 +12,16 @@ export const Header = () => {
         700: '#22848a',
     };
 
-    const grey = {
-        100: '#eaeef2',
-        300: '#afb8c1',
-        900: '#24292f',
-    };
-    // color: #22b492;
+// &.active {
+//         background-color: ${blue[700]};
+//     }
 
     const CustomButton = styled(Button)(
         ({theme}) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 16px;
+  box-sizing: border-box;
   background-color: ${blue[500]};
   padding: 12px 24px;
   border-radius: 12px;
@@ -35,16 +33,12 @@ export const Header = () => {
   box-shadow: 0 2px 2px #848d84;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 400ms;
+  transition-duration: 200ms;
 
   &:hover {
     background-color: ${blue[600]};
     opacity: 0.6;
     box-shadow: 0 4px 4px #848d84;
-  }
-
-  &.active {
-    background-color: ${blue[700]};
   }
 
   &.${buttonClasses.focusVisible} {

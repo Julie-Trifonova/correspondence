@@ -5,6 +5,7 @@ import { saveAs } from "file-saver";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"
 import Button from '@mui/material/Button';
+import {actionButtonsStyle} from "@components/IncomingDocument/IncomingDocumentData";
 
 export const ExportToExel = ({ data }: any) => {
   const columns = [
@@ -102,7 +103,13 @@ export const ExportToExel = ({ data }: any) => {
 
   return (
     <div>
-          <Button size="medium" onClick={ExportConfirmation}>Export</Button>
+          <Button size="medium"
+                  onClick={ExportConfirmation}
+                  sx={actionButtonsStyle}
+                  style={{
+                    marginLeft: '8px'
+                  }}
+          >Exel</Button>
     </div>
   );
 };

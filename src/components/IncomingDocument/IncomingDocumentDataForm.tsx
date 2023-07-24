@@ -7,6 +7,7 @@ import {
 } from "@utils/validators/validators";
 import { useDispatch } from "react-redux";
 import { reduxForm } from "redux-form";
+import s from './IncomingDocumentDataForm.module.css'
 
 import {
   CheckboxInput,
@@ -31,7 +32,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import LinkIcon from "@mui/icons-material/Link";
 import Box from "@mui/material/Box";
-import {bull, unspecified} from "./IncomingDocumentData";
+import {actionButtonsStyle, bull, iconsStyle, typographyTypeStyle, unspecified} from "./IncomingDocumentData";
 import SavingChangesSnackbar from "@components/IncomingDocument/SavingChangesSnackbar";
 
 const IncomingDocumentDataForm = ({
@@ -50,21 +51,85 @@ const IncomingDocumentDataForm = ({
   );
   const [checkedStatus, setStatus] = React.useState(document.status);
 
+  const oneLineStyle = {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    alignItems: 'center',
+    margin: `12px 0`,
+  }
+  const oneLineCheckBoxStyle = {
+    display: 'grid',
+    gridTemplateColumns: '1fr 10fr',
+    alignItems: 'center',
+  }
+  const typographyTypeCheckBoxStyle = {
+    fontFamily: 'IBM Plex Sans, sans-serif',
+    fontSize: '16px',
+    fontWeight: 400,
+    color: '#4e7e0e',
+    letterSpacing: '3px',
+    justifySelf: 'start',
+    lineHeight: '16px',
+  }
+  const dataIconsStyle = {
+    color: '#4e7e0e',
+    marginBottom: '-5px',
+    marginRight: '3px',
+  }
+
   return (
         <form onSubmit={onSubmit}>
-        <Box sx={{minWidth: 275}}>
-          <Card variant="outlined">
+        <Box sx={{
+
+          }}>
+          <Card sx={{
+            display: 'block',
+            boxSizing: 'border-box',
+            margin: `${0}px auto`,
+            padding: `${0}px ${15}px`,
+            borderRadius: '2px',
+            border: `${4}px solid ${'#ece3be'}`,
+            boxShadow: `${0}px ${1}px ${1}px transparent`,
+            '@media (min-width: 1201px)': {
+              width: '1000px',
+            },
+            '@media (min-width: 641px) and (max-width: 1200px)': {
+              width: '70%',
+            },
+            '@media (max-width: 640px)': {
+              width: '90%',
+            }
+          }}>
             <CardContent>
-              <CardActions>
-                {/*<SavingChangesSnackbar/>*/}
-                <Button size="medium" type='submit'>Сохранить</Button>
-              </CardActions>
-              <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
+              <CardActions style={{
+                display: 'flex',
+                marginBottom: '30px',
+                justifyContent: "space-evenly",
+                alignItems: 'center',
+              }}>
+              <Typography sx={{
+                // alignSelf: 'center',
+                width: '150px',
+                display: 'block',
+                textAlign: 'center',
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontSize: '16px',
+                fontWeight: 400,
+                color: '#4e7e0e',
+                letterSpacing: '6px',
+              }} gutterBottom>
                 Входящий документ
               </Typography>
-              <div>
-                <Typography variant="h5" color="text.secondary" component="span">
-                  Название {bull}
+                <Button type='submit'
+                        sx={actionButtonsStyle}
+                >Сохранить</Button>
+              </CardActions>
+              <div style={oneLineStyle}>
+                <Typography component="span"
+                            sx={typographyTypeStyle}
+                >
+                  Название
+                  {bull}
                 </Typography>
                 {createField(
                     "Название",
@@ -77,17 +142,9 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                {checkedDocumentIsReading
-                    ? <Typography sx={{fontSize: 18}} color="primary" component="span">
-                      Прочитано
-                      <MarkEmailReadIcon/>
-                    </Typography>
-                    : <Typography sx={{fontSize: 18}} color="error" component="span">
-                      Не прочитано
-                      <MarkEmailUnreadIcon/>
-                    </Typography>
-                }
+                <div style={oneLineStyle}>
+                <div></div>
+                  <div style={oneLineCheckBoxStyle}>
                 {createField(
                     "",
                     "documentIsReading",
@@ -106,10 +163,24 @@ const IncomingDocumentDataForm = ({
                     checkedDocumentIsReading,
                     updateFormData
                 )}
+                  {checkedDocumentIsReading
+                      ? <Typography sx={typographyTypeCheckBoxStyle}
+                                    component="span"
+                      >
+                        <MarkEmailReadIcon fontSize='small' sx={dataIconsStyle}/>
+                        Прочитано
+                      </Typography>
+                      : <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                        <MarkEmailUnreadIcon fontSize='small' sx={dataIconsStyle}/>
+                        Не прочитано
+                      </Typography>
+                  }
+                </div>
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Регистрационный номер {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Регистрационный номер
+                  {bull}
                 </Typography>
                 {createField(
                     "",
@@ -125,9 +196,10 @@ const IncomingDocumentDataForm = ({
                 )}
               </div>
 
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Дата регистрации {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Дата регистрации
+                  {bull}
                 </Typography>
                 {createField(
                     "",
@@ -142,9 +214,10 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Контрагент {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Контрагент
+                  {bull}
                 </Typography>
                 {createField(
                     "ООО Ромашка",
@@ -157,18 +230,12 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="div">
-                  Контакты
-                </Typography>
-              </div>
-              <div>
-                <div>
-                  <AlternateEmailIcon color='primary'/>
-                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                    E-mail {bull}
+              <div style={oneLineStyle}>
+                  <Typography sx={typographyTypeStyle} component="span">
+                    <AlternateEmailIcon fontSize='small' sx={dataIconsStyle}/>
+                    E-mail
+                    {bull}
                   </Typography>
-                </div>
                 {createField(
                     "e-mail",
                     "organizationEmail",
@@ -182,13 +249,12 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                <div>
-                  <LocalPhoneIcon color='success'/>
-                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                    Телефон {bull}
+              <div style={oneLineStyle}>
+                  <Typography sx={typographyTypeStyle} component="span">
+                    <LocalPhoneIcon fontSize='small' sx={dataIconsStyle}/>
+                    Телефон
+                    {bull}
                   </Typography>
-                </div>
                 {createField(
                     "",
                     "organizationPhoneNumber",
@@ -202,9 +268,10 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Дополнительная информация {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Дополнительная информация
+                  {bull}
                 </Typography>
                 {createField(
                     "",
@@ -217,15 +284,13 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Статус {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Статус
+                  {bull}
                 </Typography>
-              </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="primary" component="span">
-                  На рассмотрении {bull}
-                </Typography>
+              <div className={s.checkboxes}>
+                <div style={oneLineCheckBoxStyle}>
                 {createField(
                     "",
                     "status",
@@ -247,11 +312,11 @@ const IncomingDocumentDataForm = ({
                     checkedStatus,
                     updateFormData
                 )}
-              </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="primary" component="span">
-                  Отправлен ответ {bull}
-                </Typography>
+                  <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                    На рассмотрении
+                  </Typography>
+                </div>
+                <div style={oneLineCheckBoxStyle}>
                 {createField(
                     "",
                     "status",
@@ -273,10 +338,16 @@ const IncomingDocumentDataForm = ({
                     checkedStatus,
                     updateFormData
                 )}
+                  <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                    Отправлен ответ
+                  </Typography>
+                </div>
               </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Дата получения {bull}
+              </div>
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Дата получения
+                  {bull}
                 </Typography>
                 {createField(
                     "",
@@ -291,16 +362,13 @@ const IncomingDocumentDataForm = ({
                     updateFormData
                 )}
               </div>
-              <div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Способ доставки {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Способ доставки
+                  {bull}
                 </Typography>
-              </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="primary" component="span">
-                  Факс
-                </Typography>
+              <div className={s.checkboxes}>
+                <div style={oneLineCheckBoxStyle}>
                 {createField(
                     "",
                     "deliveryService",
@@ -321,11 +389,11 @@ const IncomingDocumentDataForm = ({
                     checkedDeliveryService,
                     updateFormData
                 )}
-              </div>
-              <div>
-                <Typography sx={{fontSize: 18}} color="primary" component="span">
-                  Бумага
-                </Typography>
+                  <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                    Факс
+                  </Typography>
+                </div>
+                <div style={oneLineCheckBoxStyle}>
                 {createField(
                     "",
                     "deliveryService",
@@ -346,17 +414,19 @@ const IncomingDocumentDataForm = ({
                     checkedDeliveryService,
                     updateFormData
                 )}
-              </div>
-              </div>
-
-              <div>
-                <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                  Срочность {bull}
-                </Typography>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="primary" component="span">
-                    Не установлено
+                  <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                    Бумага
                   </Typography>
+              </div>
+              </div>
+              </div>
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Срочность
+                  {bull}
+                </Typography>
+                <div className={s.checkboxes}>
+                  <div style={oneLineCheckBoxStyle}>
                   {createField(
                       "",
                       "deadline",
@@ -377,11 +447,11 @@ const IncomingDocumentDataForm = ({
                       checkedDeadline,
                       updateFormData
                   )}
+                    <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                      Не установлено
+                    </Typography>
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="primary" component="span">
-                    Срочно
-                  </Typography>
+                  <div style={oneLineCheckBoxStyle}>
                   {createField(
                       "",
                       "deadline",
@@ -402,11 +472,11 @@ const IncomingDocumentDataForm = ({
                       checkedDeadline,
                       updateFormData
                   )}
+                    <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                      Срочно
+                    </Typography>
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="primary" component="span">
-                    День
-                  </Typography>
+                  <div style={oneLineCheckBoxStyle}>
                   {createField(
                       "",
                       "deadline",
@@ -427,11 +497,11 @@ const IncomingDocumentDataForm = ({
                       checkedDeadline,
                       updateFormData
                   )}
+                    <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                      День
+                    </Typography>
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="primary" component="span">
-                    Неделя
-                  </Typography>
+                  <div style={oneLineCheckBoxStyle}>
                   {createField(
                       "",
                       "deadline",
@@ -452,11 +522,11 @@ const IncomingDocumentDataForm = ({
                       checkedDeadline,
                       updateFormData
                   )}
+                    <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                      Неделя
+                    </Typography>
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="primary" component="span">
-                    Месяц
-                  </Typography>
+                  <div style={oneLineCheckBoxStyle}>
                   {createField(
                       "",
                       "deadline",
@@ -477,16 +547,17 @@ const IncomingDocumentDataForm = ({
                       checkedDeadline,
                       updateFormData
                   )}
+                    <Typography sx={typographyTypeCheckBoxStyle} component="span">
+                      Месяц
+                    </Typography>
                 </div>
               </div>
-
-
-
-
+              </div>
               <div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                    Место хранения {bull}
+                <div style={oneLineStyle}>
+                  <Typography sx={typographyTypeStyle} component="span">
+                    Место хранения
+                    {bull}
                   </Typography>
                   {document.storagePlace
                       ? <Typography sx={{fontSize: 18}} color="primary" component="span">
@@ -495,9 +566,10 @@ const IncomingDocumentDataForm = ({
                       </Typography>
                       : unspecified()}
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                    Вложения {bull}
+                <div style={oneLineStyle}>
+                  <Typography sx={typographyTypeStyle} component="span">
+                    Вложения
+                    {bull}
                   </Typography>
                   {document.subDocuments
                       ? <Typography sx={{fontSize: 18}} color="primary" component="span">
@@ -505,9 +577,10 @@ const IncomingDocumentDataForm = ({
                       </Typography>
                       : unspecified()}
                 </div>
-                <div>
-                  <Typography sx={{fontSize: 18}} color="text.secondary" component="span">
-                    Ссылки {bull}
+                <div style={oneLineStyle}>
+                  <Typography sx={typographyTypeStyle} component="span">
+                    Ссылки
+                    {bull}
                   </Typography>
                   {createField(
                       "",
@@ -523,9 +596,10 @@ const IncomingDocumentDataForm = ({
                   )}
                 </div>
               </div>
-              <div>
-                <Typography sx={{fontSize: 16}} color="text.secondary" component="span">
-                  Зарегистрировал {bull}
+              <div style={oneLineStyle}>
+                <Typography sx={typographyTypeStyle} component="span">
+                  Зарегистрировал
+                  {bull}
                 </Typography>
                 {createField(
                     "Иванов М.В.",

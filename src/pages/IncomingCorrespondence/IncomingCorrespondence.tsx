@@ -172,7 +172,7 @@ const IncomingCorrespondence = () => {
                       cursor: 'pointer',
                       // background: '#DAC5E2',
                       boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
-                      border: `${5}px solid ${'#99b9fd'}`,
+                      border: `${4}px solid ${'#99b9fd'}`,
                       // border: `${5}px solid ${'#b1d0c3'}`,
                     }
                   }}

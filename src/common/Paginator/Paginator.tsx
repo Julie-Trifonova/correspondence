@@ -36,7 +36,7 @@ export const Paginator = ({
                       transitionProperty: 'all',
                       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                       transitionDuration: '120ms',
-                      '&:hover': {color: '#3980a9'},
+                      '&:hover': {color: '#830B2D'},
                     }}
         >
         <ArrowBackIosNewIcon/>
@@ -59,7 +59,7 @@ export const Paginator = ({
                             transitionProperty: 'all',
                             transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                             transitionDuration: '120ms',
-                            '&:hover': {color: '#3980a9'},
+                            '&:hover': {color: '#830B2D'},
                           }}
               >
                 {p}
@@ -74,7 +74,7 @@ export const Paginator = ({
                         transitionProperty: 'all',
                         transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                         transitionDuration: '120ms',
-                        '&:hover': {color: '#3980a9'},
+                        '&:hover': {color: '#830B2D'},
                       }}
                       aria-label="change portion forward"
                       size='medium'

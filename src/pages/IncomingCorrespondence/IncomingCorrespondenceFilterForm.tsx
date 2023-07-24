@@ -83,12 +83,12 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({onFilterC
                                             className={s.button_form}
                                             disabled={isSubmitting}
                                             sx={{
-                                                color: '#6292ff',
+                                                color: '#ad5473',
                                                 marginTop: '8px',
                                                 transitionProperty: 'all',
                                                 transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                                                 transitionDuration: '400ms',
-                                                '&:hover': {color: '#3980a9'}
+                                                '&:hover': {color: '#830B2D'}
                                 }}
                                             aria-label="search and filter">
                                     <SearchIcon fontSize= 'large'/>
@@ -135,26 +135,26 @@ const StyledInputElement = styled('input')(
   line-height: 1.5rem;
   padding: 8px 12px;
   border-radius: 8px;
-  color: ${'#830B2D'};
+  color: ${'#698c4a'};
   letter-spacing: 1px;
-  background: ${'#b1d0c3'};
+  background: ${'#ffffff'};
   border: 0.5px solid transparent;
-  box-shadow: 0px 2px 2px ${'#99b9fd'};
+  box-shadow: 2px 2px 2px ${'#8b79d3'};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 400ms;
 
   &:hover {
     cursor: pointer;
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
-    box-shadow: 0px 4px 4px ${'#99b9fd'};
+    background: ${'#e7f3e8'};
+    color: ${'#830B2D'};
+    box-shadow: 2px 4px 4px ${'#8b79d3'};
   }
 
   &:focus {
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
-    box-shadow: 0px 4px 4px ${'#99b9fd'};
+    background: ${'#e7f3e8'};
+    color: ${'#830B2D'};
+    box-shadow: 2px 4px 4px ${'#8b79d3'};
   }
 
   // firefox
@@ -214,26 +214,26 @@ const StyledButton = styled('button')(
   text-align: left;
   line-height: 1.5;
   border-radius: 8px;
-  color: ${'#830B2D'};
+  color: ${'#698c4a'};
   letter-spacing: 1px;
-  background: ${'#b1d0c3'};
+  background: ${'#ffffff'};
   border: 0.5px solid transparent;
-  box-shadow: 0px 2px 2px ${'#99b9fd'};
+  box-shadow: 2px 2px 2px ${'#8b79d3'};
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 400ms;
 
   &:hover {
     cursor: pointer;
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
-    box-shadow: 0px 4px 4px ${'#99b9fd'};
+    background: ${'#e7f3e8'};
+    color: ${'#830B2D'};
+    box-shadow: 2px 4px 4px ${'#8b79d3'};
   }
   
   &.${selectClasses.focusVisible} {
     background: ${'#99b9fd'};
     color: ${'#ffffff'};
-    box-shadow: 0px 4px 4px ${'#99b9fd'};
+    box-shadow: 2px 4px 4px ${'#8b79d3'};
     border: 1px solid ${'#338396'};
   }
 
@@ -264,11 +264,11 @@ const StyledListbox = styled('ul')(
   text-align: left;
   line-height: 1.5;
   border-radius: 8px;
-  color: ${'#830B2D'};
+  color: ${'#698c4a'};
   letter-spacing: 1px;
-  background: ${'#b1d0c3'};
-  border: 1px solid ${'#224d3a'};
-  box-shadow: 0px 2px 2px ${'#99b9fd'};
+  background: ${'#ffffff'};
+  box-shadow: inset 2px 2px 2px ${'#8b79d3'};
+  border: 3px solid ${'#80a5c0'};
   `,
 );
 
@@ -277,26 +277,21 @@ const StyledOption = styled(Option)(
   list-style: none;
   padding: 8px;
   border-radius: 8px;
-  cursor: default;
 
   &:last-of-type {
     border-bottom: none;
   }
 
   &.${optionClasses.selected} {
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
-    border: 1px solid ${'#224d3a'};
+    background: ${'#dee8f6'};
   }
 
   &.${optionClasses.highlighted} {
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
+  
   }
 
   &.${optionClasses.highlighted}.${optionClasses.selected} {
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
+    
   }
 
   &.${optionClasses.disabled} {
@@ -304,8 +299,7 @@ const StyledOption = styled(Option)(
   }
 
   &:hover:not(.${optionClasses.disabled}) {
-    background: ${'#99b9fd'};
-    color: ${'#ffffff'};
+    background: ${'#dee8f6'};
   }  
   `,
 );

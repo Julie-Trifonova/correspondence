@@ -29,108 +29,132 @@ export const IncomingDocumentCard = ({ document }: any) => {
             •
         </Box>
     );
+
     const dispatch = useDispatch();
+
+    const dataStyle = {
+        display: 'inline-block',
+        height: '28px',
+        padding: '4px',
+        marginTop: '8px',
+        textOverflow: 'ellipsis',
+        paddingLeft: '7px',
+        boxSizing: 'border-box',
+        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        borderRadius: '8px',
+        letterSpacing: '1px',
+        border: `${0.5}px solid transparent`,
+        boxShadow: `inset ${1}px ${2}px ${2}px ${'#6c9ea9'}`,
+        color: '#4F1DC7',
+    }
+
+    const dataUnknown = () => {
+        return (
+        <Typography component="div"
+                    sx={{
+                        display: 'inline-block',
+                        padding: '4px',
+                        textOverflow: 'ellipsis',
+                        marginTop: '10px',
+                        paddingLeft: '7px',
+                        boxSizing: 'border-box',
+                        fontFamily: 'IBM Plex Sans, sans-serif',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        borderRadius: '8px',
+                        letterSpacing: '1px',
+                        border: `${0.5}px solid transparent`,
+                        boxShadow: `inset ${1}px ${2}px ${2}px ${'#5151dc'}`,
+                        color: '#4F1DC7',
+                    }}
+        >
+            Не указано
+        </Typography>
+    )
+    }
   return (
     <div>
       <Box className={s.box}>
             <Card variant='outlined'
                   sx={{
                       margin: '20px',
+                      // height: '230px',
                       boxSizing: 'border-box',
-                      borderRadius: '1px',
-                      background: '#ffffee',
-                      border: `${4}px solid transparent`,
-                      boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
+                      borderRadius: '4px',
+                      boxShadow: `${2}px ${2}px ${2}px ${'#8b79d3'}`,
                       display: 'block',
                       transitionProperty: 'all',
                       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                      transitionDuration: '400ms',
+                      transitionDuration: '150ms',
+                      color: '#4F1DC7',
                       '&:hover': {
                           cursor: 'pointer',
-                          boxShadow: `${0}px ${6}px ${6}px ${'#99b9fd'}`,
-                          border: `${4}px solid ${'#b4b141'}`,
-                      }
+                          color: '#4F1DC7',
+                          boxShadow: `${2}px ${4}px ${4}px ${'#8b79d3'}`,
+                      },
                   }}
             >
                 <NavLink to={`${document.id}`} className={s.link_to_card_box}>
                 <CardContent>
-                    <Typography sx={{
-                        textOverflow: 'ellipsis',
-                        paddingLeft: '7px',
-                        boxSizing: 'border-box',
-                        fontFamily: 'IBM Plex Sans, sans-serif',
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        borderRadius: '8px',
-                        color: '#645A38',
-                        letterSpacing: '1px',
-                        background: '#F4E2DB',
-                        border: `${0.5}px solid transparent`,
-                        boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                    }}>
-                        {document.organizationName}
-                    </Typography>
-                    <Typography variant="h5"
-                                component="div"
-                                sx={{
-                                    textOverflow: 'ellipsis',
-                                    marginTop: '10px',
-                                    paddingLeft: '7px',
-                                    boxSizing: 'border-box',
-                                    fontFamily: 'IBM Plex Sans, sans-serif',
-                                    fontSize: '16px',
-                                    fontWeight: 'bold',
-                                    borderRadius: '8px',
-                                    color: '#7F3E54',
-                                    letterSpacing: '1px',
-                                    background: '#ECD127',
-                                    border: `${0.5}px solid transparent`,
-                                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                                }}
-                    >
-                        {document.name}
-                        <br />
-                        {document.organizationEmail}
-                    </Typography>
-                    <Typography sx={{
-                        textOverflow: 'ellipsis',
-                        mb: 1.5,
-                        marginTop: '10px',
-                        paddingLeft: '7px',
-                        boxSizing: 'border-box',
-                        fontFamily: 'IBM Plex Sans, sans-serif',
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        borderRadius: '8px',
-                        color: '#682B3A',
-                        letterSpacing: '1px',
-                        background: '#E3DF7B',
-                        border: `${0.5}px solid transparent`,
-                        boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                    }}>
-                        {document.deadline}
-                    </Typography>
-                    <Typography variant="body2"
-                                sx={{
-                                    textOverflow: 'ellipsis',
-                                    marginTop: '10px',
-                                    paddingLeft: '7px',
-                                    boxSizing: 'border-box',
-                                    fontFamily: 'IBM Plex Sans, sans-serif',
-                                    fontSize: '12px',
-                                    fontWeight: 'bold',
-                                    borderRadius: '8px',
-                                    color: '#59214B',
-                                    letterSpacing: '1px',
-                                    background: '#C0D61A',
-                                    border: `${0.5}px solid transparent`,
-                                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                                }}
-                    >
-                        {document.registeredEmployeeFullName}
+                    <div>
+                        {document.organizationName
+                            ? <Typography component="div"
+                                         sx={dataStyle}>
+                                {document.organizationName}
+                            </Typography>
+                            : dataUnknown()
+                        }
+                    </div>
+                    <div>
+                        {document.name
+                        ? <Typography component="div"
+                                      sx={dataStyle}
+                            >
+                                {document.name}
+                            </Typography>
+                        : dataUnknown()
+                        }
+                    </div>
+                    <div>
+                        {document.organizationEmail
+                        ? <Typography component="div"
+                                     sx={dataStyle}
+                            >
+                                {document.organizationEmail}
+                            </Typography>
+                        : dataUnknown()
+                        }
+                    </div>
+                    <div>
+                        {document.deadline
+                        ? <Typography component="div"
+                                     sx={dataStyle}>
+                                {document.deadline}
+                            </Typography>
+                        : dataUnknown()
+                        }
+                    </div>
+                    <div>
+                        {document.registeredEmployeeFullName
+                        ? <Typography component="div"
+                                      sx={dataStyle}
+                            >
+                                {document.registeredEmployeeFullName}
+                            </Typography>
+                        : dataUnknown()
+                        }
                         {bull}
-                        {document.registrationDate}
-                    </Typography>
+                        {document.registrationDate
+                        ? <Typography component="div"
+                                     sx={dataStyle}
+                            >
+                                {document.registrationDate}
+                            </Typography>
+                        : dataUnknown()
+                        }
+                    </div>
                 </CardContent>
                 </NavLink>
                 <CardActions sx={{
@@ -141,15 +165,16 @@ export const IncomingDocumentCard = ({ document }: any) => {
                             size='small'
                             sx={{
                                 boxSizing: 'border-box',
-                                color: '#627957',
+                                color: '#4F1DC7',
                                 background: 'transparent',
-                                boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
+                                boxShadow: `${0}px ${2}px ${2}px ${'#8b79d3'}`,
                                 transitionProperty: 'all',
                                 transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                                 transitionDuration: '400ms',
                                 '&:hover': {
                                     cursor: 'pointer',
-                                    boxShadow: `${0}px ${6}px ${6}px ${'#99b9fd'}`,
+                                    boxShadow: `${0}px ${6}px ${6}px ${'#8b79d3'}`,
+                                    background: 'transparent',
                                 }
                             }}
                     >

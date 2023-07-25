@@ -160,20 +160,16 @@ const IncomingCorrespondence = () => {
                     fontFamily: 'IBM Plex Sans, sans-serif',
                     fontSize: '14px',
                     fontWeight: 'bold',
-                    // borderRadius: '8px',
                     color: '#645A38',
                     letterSpacing: '1px',
-                    // background: '#F4E2DB',
                     border: `${0.5}px solid ${'#F4E2DB'}`,
                     boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
                     '&:hover': {
                       color: '#4F1DC7',
                       fontWeight: 'bold',
                       cursor: 'pointer',
-                      // background: '#DAC5E2',
                       boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
                       border: `${4}px solid ${'#99b9fd'}`,
-                      // border: `${5}px solid ${'#b1d0c3'}`,
                     }
                   }}
           >Документ</Button>
@@ -192,7 +188,7 @@ const IncomingCorrespondence = () => {
       <div className={s.cards}>
         {documents.map((d: any) => (
           <div>
-            <IncomingDocumentCard document={d} />
+            <IncomingDocumentCard document={d}/>
           </div>
         ))}
       </div>

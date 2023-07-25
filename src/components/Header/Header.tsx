@@ -6,15 +6,6 @@ import {NavLink} from "react-router-dom";
 import s from './Header.module.css'
 
 export const Header = () => {
-    const blue = {
-        500: '#769f8c',
-        600: '#4a7dc4',
-        700: '#22848a',
-    };
-
-// &.active {
-//         background-color: ${blue[700]};
-//     }
 
     const CustomButton = styled(Button)(
         ({theme}) => `
@@ -22,28 +13,29 @@ export const Header = () => {
   font-weight: bold;
   font-size: 16px;
   box-sizing: border-box;
-  background-color: ${blue[500]};
+  background: ${'#ffffff'};
   padding: 12px 24px;
   border-radius: 12px;
-  color: white;
+  color: ${'#a19118'};
   transition: all 150ms ease;
   cursor: pointer;
-  border: none;
-  opacity: 0.6;
+  border: 3px groove ${'#b8a2f3'};
   box-shadow: 0 2px 2px #848d84;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
+  
+  &.active {
+        background-color: ${'#e7f3e8'};
+    },
 
   &:hover {
-    background-color: ${blue[600]};
-    opacity: 0.6;
+    background: ${'#e7f3e8'};
     box-shadow: 0 4px 4px #848d84;
   }
 
   &.${buttonClasses.focusVisible} {
     box-shadow: 0 3px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
-    outline: none;
   }
   `,
     );

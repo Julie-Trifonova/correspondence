@@ -16,10 +16,11 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import LinkIcon from '@mui/icons-material/Link';
 import {DeleteConfirmation} from "../../common/DeleteConfirmation/DeleteConfirmation";
 import {deleteIncomingDocument} from "../../redux/incomingCorrespondenceReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
 import s from './IncomingDocumentCard.module.css'
+import {getCurrentPage, getDocumentsFilter, getPageSize} from "../../redux/documentsSelectors";
 
 export const bull = (<Box component="span"
                           sx={{
@@ -60,7 +61,7 @@ export const typographyTypeStyle = {
     fontFamily: 'IBM Plex Sans, sans-serif',
     fontSize: '16px',
     fontWeight: 400,
-    color: '#4e7e0e',
+    color: '#4F1DC7',
     letterSpacing: '3px',
     justifySelf: 'end',
     lineHeight: '16px',
@@ -74,7 +75,7 @@ export const typographyDataStyle = {
     lineHeight: '16px',
 }
 export const iconsStyle = {
-    color: '#4e7e0e',
+    color: '#4F1DC7',
     marginBottom: '-5px',
 }
 const typographyMarginStyle = {
@@ -86,6 +87,14 @@ export const IncomingDocumentData = ({goToEditMode, document}: any) => {
 
     const dispatch = useDispatch();
     let navigate = useNavigate();
+
+    const filter = useSelector(getDocumentsFilter);
+    const pageSize = useSelector(getPageSize);
+    const currentPage = useSelector(getCurrentPage);
+
+    const navigateToListIncomingCorrespondence = () => {
+        navigate(`/incomingCorrespondence?_limit=${pageSize}&_page=${currentPage}&${filter.type}=${filter.term}&_sort=${filter.type}&_order=DESC`, {replace: true});
+    }
 
     return (
         <div>
@@ -133,7 +142,7 @@ export const IncomingDocumentData = ({goToEditMode, document}: any) => {
                         }
                         }}>
                             <Button size="medium"
-                                    onClick={() => navigate(-1)}
+                                    onClick={() => navigateToListIncomingCorrespondence()}
                                     sx={actionButtonsStyle}
                             >Назад</Button>
                             <Button size="medium"
@@ -153,7 +162,7 @@ export const IncomingDocumentData = ({goToEditMode, document}: any) => {
                             fontFamily: 'IBM Plex Sans, sans-serif',
                             fontSize: '16px',
                             fontWeight: 400,
-                            color: '#4e7e0e',
+                            color: '#4F1DC7',
                             letterSpacing: '6px',
                         }} gutterBottom>
                             Входящий документ

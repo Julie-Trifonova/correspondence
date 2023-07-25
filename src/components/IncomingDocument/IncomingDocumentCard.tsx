@@ -66,7 +66,7 @@ export const IncomingDocumentCard = ({ document }: any) => {
                         borderRadius: '8px',
                         letterSpacing: '1px',
                         border: `${0.5}px solid transparent`,
-                        boxShadow: `inset ${1}px ${2}px ${2}px ${'#5151dc'}`,
+                        boxShadow: `inset ${1}px ${2}px ${2}px ${'#6c9ea9'}`,
                         color: '#4F1DC7',
                     }}
         >
@@ -89,6 +89,8 @@ export const IncomingDocumentCard = ({ document }: any) => {
                       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                       transitionDuration: '150ms',
                       color: '#4F1DC7',
+                      background: '#ffffff',
+                      border: `${5}px groove ${'#b8a2f3'}`,
                       '&:hover': {
                           cursor: 'pointer',
                           color: '#4F1DC7',

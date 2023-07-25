@@ -6,7 +6,12 @@ import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import { change } from "redux-form";
 
 import { DeleteConfirmation } from "../../common/DeleteConfirmation/DeleteConfirmation";
-import { getCurrentDocument } from "../../redux/documentsSelectors";
+import {
+  getCurrentDocument, getCurrentPage,
+  getDocumentsFilter,
+  getPageSize,
+  getTotalDocumentsCount
+} from "../../redux/documentsSelectors";
 import {
   addIncomingDocument,
   deleteIncomingDocument,
@@ -50,15 +55,14 @@ const IncomingDocument = () => {
     localStorage.setItem("SelectedOption", option);
     setEditMode(option);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e: any) => {
+    // e.preventDefault();
     if (!!location.state) {
       dispatch(addIncomingDocument(documentId, document)).then(() => {
-        // navigate(`/incomingCorrespondence/${documentId}`)
         setSelectedOption("0");
       });
     } else {
       dispatch(updateIncomingDocument(documentId)).then(() => {
-        // navigate(`/incomingCorrespondence/${documentId}`)
         setSelectedOption("0");
       });
     }

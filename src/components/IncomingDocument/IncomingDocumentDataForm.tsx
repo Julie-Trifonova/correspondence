@@ -68,19 +68,19 @@ const IncomingDocumentDataForm = ({
     fontFamily: 'IBM Plex Sans, sans-serif',
     fontSize: '16px',
     fontWeight: 400,
-    color: '#4e7e0e',
+    color: '#4F1DC7',
     letterSpacing: '3px',
     justifySelf: 'start',
     lineHeight: '16px',
   }
   const dataIconsStyle = {
-    color: '#4e7e0e',
+    color: '#4F1DC7',
     marginBottom: '-5px',
     marginRight: '3px',
   }
 
   return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onSubmit(e)}>
         <Box>
           <Card sx={{
             display: 'block',
@@ -115,7 +115,7 @@ const IncomingDocumentDataForm = ({
                 fontFamily: 'IBM Plex Sans, sans-serif',
                 fontSize: '16px',
                 fontWeight: 400,
-                color: '#4e7e0e',
+                color: '#4F1DC7',
                 letterSpacing: '6px',
               }} gutterBottom>
                 Входящий документ

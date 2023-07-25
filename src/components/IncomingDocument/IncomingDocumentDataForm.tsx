@@ -34,6 +34,7 @@ import LinkIcon from "@mui/icons-material/Link";
 import Box from "@mui/material/Box";
 import {actionButtonsStyle, bull, iconsStyle, typographyTypeStyle, unspecified} from "./IncomingDocumentData";
 import SavingChangesSnackbar from "@components/IncomingDocument/SavingChangesSnackbar";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 
 const IncomingDocumentDataForm = ({
   initialValues,
@@ -41,6 +42,7 @@ const IncomingDocumentDataForm = ({
   document,
   updateFormData,
 }: any) => {
+  const navigate = useNavigate();
   const [checkedDocumentIsReading, setCheckedDocumentIsReading] =
     React.useState(document.documentIsReading);
   const [checkedDeliveryService, setCheckedDeliveryService] = React.useState(
@@ -79,9 +81,7 @@ const IncomingDocumentDataForm = ({
 
   return (
         <form onSubmit={onSubmit}>
-        <Box sx={{
-
-          }}>
+        <Box>
           <Card sx={{
             display: 'block',
             boxSizing: 'border-box',
@@ -122,7 +122,11 @@ const IncomingDocumentDataForm = ({
               </Typography>
                 <Button type='submit'
                         sx={actionButtonsStyle}
-                >Сохранить</Button>
+                >Сохранить</Button><
+                Button type='submit'
+                       onClick={() => navigate(-1)}
+                        sx={actionButtonsStyle}
+                >Назад</Button>
               </CardActions>
               <div style={oneLineStyle}>
                 <Typography component="span"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import {Navigate, useLocation, useNavigate} from "react-router-dom";
 import { change } from "redux-form";
 
 import { DeleteConfirmation } from "../../common/DeleteConfirmation/DeleteConfirmation";
@@ -38,6 +38,7 @@ const IncomingDocument = () => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
     }
+    navigate(`/incomingCorrespondence/${documentId}`)
   }, [documentId]);
 
   const getInitialState = () => {
@@ -52,10 +53,12 @@ const IncomingDocument = () => {
   const handleSubmit = () => {
     if (!!location.state) {
       dispatch(addIncomingDocument(documentId, document)).then(() => {
+        // navigate(`/incomingCorrespondence/${documentId}`)
         setSelectedOption("0");
       });
     } else {
       dispatch(updateIncomingDocument(documentId)).then(() => {
+        // navigate(`/incomingCorrespondence/${documentId}`)
         setSelectedOption("0");
       });
     }

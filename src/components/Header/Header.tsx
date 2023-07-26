@@ -54,7 +54,7 @@ export const Header = () => {
             </NavLink>
             <NavLink to="/outgoingCorrespondence">
                 <CustomButton
-                    class={active === 'outgoing correspondence' ? 'active' : ''}
+                    className={active === 'outgoing correspondence' ? 'active' : ''}
                     onClick={() => setActive('outgoing correspondence')}
                 >
                     Исходящая корреспонденция

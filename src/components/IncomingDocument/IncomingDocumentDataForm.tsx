@@ -158,8 +158,6 @@ const IncomingDocumentDataForm = ({
                       type: "checkbox",
                       defaultChecked: !!document.documentIsReading,
                       checked: checkedDocumentIsReading,
-                      // onClick: () =>
-                      //     setCheckedDocumentIsReading(!document.documentIsReading),
                      onChange: () =>
                           setCheckedDocumentIsReading(!document.documentIsReading),
                     },

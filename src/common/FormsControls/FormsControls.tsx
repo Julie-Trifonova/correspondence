@@ -10,14 +10,15 @@ import { styled } from '@mui/system';
 import FormControl, { FormControlState } from '@mui/base/FormControl';
 import Input, { inputClasses } from '@mui/base/Input';
 import {typographyDataStyle} from "@components/IncomingDocument/IncomingDocumentData";
+import {documentType} from "../../types/documentType";
 
 
 function createField<FormKeysType extends string>(
-  placeholder: string | undefined,
+  placeholder: string,
   name: FormKeysType,
-  validators: Array<FieldValidatorType> | string,
+  validators: Array<FieldValidatorType>,
   component: React.FC<WrappedFieldProps>, // string | React.Component | React.FC,
-  props: any,
+  props: documentType,
   text = "",
   documentProps: any,
   updateFormData: any
@@ -118,17 +119,17 @@ export const TextareaCreate: React.FC<WrappedFieldProps> = (props) => {
     );
 
   return (
-    <FormControlCreate {...props} >
-      {/*<textarea {...input} {...props} />*/}
-        <StyledTextarea
-            {...input}
-            {...props}
-            maxRows={4}
-            aria-label="maximum height"
-            // placeholder="Maximum 4 rows"
-            // defaultValue=""
-        />
-    </FormControlCreate>
+    // <FormControlCreate {...props} >
+      <textarea {...input} {...props} />
+        // <StyledTextarea
+        //     {...input}
+        //     {...props}
+        //     maxRows={4}
+        //     aria-label="maximum height"
+        //     // placeholder="Maximum 4 rows"
+        //     // defaultValue=""
+        // />
+    // </FormControlCreate>
   );
 };
 

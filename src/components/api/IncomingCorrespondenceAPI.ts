@@ -1,10 +1,10 @@
 import { instance } from "@components/api/api";
-import { Simulate } from "react-dom/test-utils";
+import {documentType} from "../../types/types";
 
 export const incomingCorrespondenceAPI = {
   getIncomingCorrespondencePage(
-    currentPage: any,
-    pageSize: any,
+    currentPage: number,
+    pageSize: number,
     term: string = "",
     type: string = ""
   ) {
@@ -15,7 +15,6 @@ export const incomingCorrespondenceAPI = {
         }=${
           term === "undefined" || term === "" ? "" : term
         }&_sort=${type}&_order=ASC`
-        // `incomingCorrespondenceDocuments?_limit=${pageSize}&_page=${currentPage}` + ((term === '' || 'undefined' ? '' : type = term) + (_sort=type) + (_order=DESC)
       )
       .then((response) => response.data);
   },
@@ -24,22 +23,22 @@ export const incomingCorrespondenceAPI = {
       .get(`incomingCorrespondenceDocuments`)
       .then((response) => response.data);
   },
-  getCurrentDocument(documentId: any) {
+  getCurrentDocument(documentId: number) {
     return instance
       .get(`incomingCorrespondenceDocuments/` + documentId)
       .then((response) => response.data);
   },
-  updateIncomingDocument(documentId: any, formData: any) {
+  updateIncomingDocument(documentId: number, formData: documentType) {
     return instance
       .patch(`incomingCorrespondenceDocuments/${documentId}`, formData)
       .then((response) => response.data);
   },
-  addIncomingDocument(document: any) {
+  addIncomingDocument(document: documentType) {
     return instance
       .post("incomingCorrespondenceDocuments", document)
       .then((response) => response.data);
   },
-  deleteIncomingDocument(documentId: any) {
+  deleteIncomingDocument(documentId: number) {
     return instance
       .delete("incomingCorrespondenceDocuments/" + documentId)
       .then((response) => response.data);

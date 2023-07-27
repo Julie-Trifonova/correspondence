@@ -1,7 +1,6 @@
 
-
 export type documentType = {
-    id: 16;
+    id: number;
     name: string;
     registrationNumber: string;
     registrationDate: string;
@@ -18,4 +17,19 @@ export type documentType = {
     storagePlace: string;
     subDocuments: string;
     links: string;
+}
+
+export type fieldPropsType = {
+    onChange?: () => void;
+    type?: string,
+    defaultChecked?: boolean;
+    checked?: boolean;
+}
+
+export type paginatorDataType = {
+    totalDocumentsCount: number;
+    pageSize: number;
+    currentPage?: number
+    onPageChanged: (page: number) => {},
+    portionSize: number,
 }

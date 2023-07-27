@@ -144,7 +144,7 @@ export const getCurrentIncomingDocument =
   };
 
 export const updateIncomingDocument =
-  (documentId: any): any =>
+  (documentId: number): any =>
   async (dispatch: any, getState: any) => {
     const formData = getState().form.incomingDocumentForm.values;
     await incomingCorrespondenceAPI.updateIncomingDocument(

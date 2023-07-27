@@ -19,6 +19,7 @@ import {
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
 import {IncomingDocumentData} from "@components/IncomingDocument/IncomingDocumentData";
+import {documentType} from "../../types/types";
 
 const IncomingDocument = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const IncomingDocument = () => {
     location.pathname.split("/");
   const documentId = Number(documentIdString);
 
-  const updateFormData = (field: any, value: any) => {
+  const updateFormData = (field: string, value: documentType) => {
     dispatch(change("incomingDocumentForm", field, value));
   };
 

@@ -156,10 +156,10 @@ const IncomingDocumentDataForm = ({
                     CheckboxInput,
                     {
                       type: "checkbox",
-                      defaultChecked: !!document.documentIsReading,
-                      checked: checkedDocumentIsReading,
+                      defaultChecked: !!checkedDocumentIsReading,
+                      checked: !!checkedDocumentIsReading,
                      onChange: () =>
-                          setCheckedDocumentIsReading(!document.documentIsReading),
+                          setCheckedDocumentIsReading(!checkedDocumentIsReading),
                     },
                     "",
                     checkedDocumentIsReading,
@@ -303,7 +303,7 @@ const IncomingDocumentDataForm = ({
                       defaultChecked: document.status === "consideration",
                       checked: checkedStatus === "consideration",
                       onChange: () => {
-                        if (checkedDeadline === "consideration") {
+                        if (checkedStatus === "consideration") {
                           setStatus("");
                         } else {
                           setStatus("consideration");
@@ -377,6 +377,7 @@ const IncomingDocumentDataForm = ({
                     [maxLengthValidator(20)],
                     CheckboxInput,
                     {
+                      type: "checkbox",
                       defaultChecked: document.deliveryService === "fax",
                       checked: checkedDeliveryService === "fax",
                       onChange: () => {
@@ -402,6 +403,7 @@ const IncomingDocumentDataForm = ({
                     [maxLengthValidator(20)],
                     CheckboxInput,
                     {
+                      type: "checkbox",
                       defaultChecked: document.deliveryService === "paper",
                       checked: checkedDeliveryService === "paper",
                       onChange: () => {
@@ -435,8 +437,9 @@ const IncomingDocumentDataForm = ({
                       [],
                       CheckboxInput,
                       {
-                        defaultChecked: !checkedDeadline || "unspecified",
-                        checked: checkedDeadline === "unspecified",
+                        type: "checkbox",
+                        defaultChecked: checkedDeadline === "unspecified" || checkedDeadline === "",
+                        checked: checkedDeadline === "unspecified" || checkedDeadline === "",
                         onChange: () => {
                           if (checkedDeadline === "unspecified") {
                             setCheckedDeadline("");
@@ -460,6 +463,7 @@ const IncomingDocumentDataForm = ({
                       [],
                       CheckboxInput,
                       {
+                        type: "checkbox",
                         defaultChecked: document.deadline === "urgent",
                         checked: checkedDeadline === "urgent",
                         onChange: () => {
@@ -485,6 +489,7 @@ const IncomingDocumentDataForm = ({
                       [],
                       CheckboxInput,
                       {
+                        type: "checkbox",
                         defaultChecked: document.deadline === "day",
                         checked: checkedDeadline === "day",
                         onChange: () => {
@@ -510,6 +515,7 @@ const IncomingDocumentDataForm = ({
                       [],
                       CheckboxInput,
                       {
+                        type: "checkbox",
                         defaultChecked: document.deadline === "week",
                         checked: checkedDeadline === "week",
                         onChange: () => {
@@ -535,6 +541,7 @@ const IncomingDocumentDataForm = ({
                       [],
                       CheckboxInput,
                       {
+                        type: "checkbox",
                         defaultChecked: document.deadline === "month",
                         checked: checkedDeadline === "month",
                         onChange: () => {

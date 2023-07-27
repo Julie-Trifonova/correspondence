@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 
 import s from "./Paginator.module.css";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import {IconButton} from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {paginatorDataType} from "../../types/types";
 
 export const Paginator = ({
   totalDocumentsCount,
   pageSize,
   currentPage = 1,
-  onPageChanged = () => {},
+  onPageChanged,
   portionSize,
-}: any) => {
+}: paginatorDataType) => {
   let [portionNumber, setPortionNumber] = useState(1);
   let pagesCount = Math.ceil(totalDocumentsCount / pageSize);
   let portionCount = Math.ceil(pagesCount / portionSize);

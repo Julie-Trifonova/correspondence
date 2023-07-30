@@ -30,6 +30,6 @@ export type paginatorDataType = {
     totalDocumentsCount: number;
     pageSize: number;
     currentPage?: number
-    onPageChanged: (page: number) => {},
+    onPageChanged: (page: number) => void,
     portionSize: number,
 }

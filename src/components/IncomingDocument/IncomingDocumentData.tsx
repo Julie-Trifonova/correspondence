@@ -153,8 +153,7 @@ export const IncomingDocumentData = ({goToEditMode, document}: any) => {
                                     onClick={() => DeleteConfirmation(dispatch, deleteIncomingDocument(document.id))}
                                     sx={actionButtonsStyle}
                             >Удалить</Button>
-                            <ExportToExel data={[document]}
-                            />
+                            <ExportToExel/>
                         </CardActions>
                         <Typography sx={{
                             display: 'block',

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 
 import Excel from "exceljs";
 import { saveAs } from "file-saver";
@@ -6,8 +6,30 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css"
 import Button from '@mui/material/Button';
 import {actionButtonsStyle} from "@components/IncomingDocument/IncomingDocumentData";
+import {useSelector} from "react-redux";
+import {getCurrentDocument} from "../../redux/documentsSelectors";
 
-export const ExportToExel = ({ data }: any) => {
+export const ExportToExel = () => {
+  const currentDocument = useSelector(getCurrentDocument)
+  const documentData = {
+    id: currentDocument.id,
+    name: currentDocument.name,
+    registrationNumber: currentDocument.registrationNumber,
+    registrationDate: currentDocument.registrationDate,
+    registeredEmployeeFullName: currentDocument.registeredEmployeeFullName,
+    organizationName: currentDocument.organizationName,
+    organizationEmail: currentDocument.organizationEmail,
+    organizationPhoneNumber: currentDocument.organizationPhoneNumber,
+    organizationAdditionalInformation: currentDocument.organizationAdditionalInformation,
+    documentIsReading: currentDocument.documentIsReading ? 'Прочитано' : 'Не прочитано',
+    status: currentDocument.status === "consideration" ? "На рассмотрении" : currentDocument.status === "sent response" ? "Отправлен ответ" : "Не указано",
+    deliveryDate: currentDocument.deliveryDate,
+    deliveryService: currentDocument.deliveryService === "fax" ? "Факс" : currentDocument.deliveryService === "paper" ? "Бумага" : "Не указано",
+    deadline: currentDocument.deadline === "month" ? "Месяц" : currentDocument.deadline === "week" ? "Неделя" : currentDocument.deadline === "day" ? "День" : currentDocument.deadline === "urgent" ? "Срочно" : currentDocument.deadline === "unspecified" ? "Не установлено" : "Не установлено",
+    storagePlace: currentDocument.storagePlace,
+    subDocuments: currentDocument.subDocuments,
+    links: currentDocument.links,
+  }
   const columns = [
     { header: "", key: "name" },
     { header: "Регистрационный номер", key: "registrationNumber" },
@@ -22,8 +44,7 @@ export const ExportToExel = ({ data }: any) => {
     },
     {
       header: "Прочитано/не прочитано",
-      key: `${(col: any) =>
-        col.documentIsReading ? "Прочитано" : "Не прочитано"}`,
+      key: "documentIsReading"
     },
     { header: "Статус", key: "status" },
     { header: "Дата получения", key: "deliveryDate" },
@@ -35,15 +56,13 @@ export const ExportToExel = ({ data }: any) => {
   ];
 
   const workSheetName = "Worksheet-1";
-  const workBookName = `${data[0].name}`;
-  const myInputId = "myInput";
+  const workBookName = `${documentData.name}`;
 
   const workbook = new Excel.Workbook();
 
   const saveExcel = async () => {
     try {
-      const myInput: any = document.getElementById(myInputId);
-      const fileName = workBookName || myInput.value;
+      const fileName = workBookName;
 
       const worksheet = workbook.addWorksheet(workSheetName);
       worksheet.columns = columns;
@@ -55,9 +74,7 @@ export const ExportToExel = ({ data }: any) => {
         column.alignment = { horizontal: "center" };
       });
 
-      data.forEach((singleData: any) => {
-        worksheet.addRow(singleData);
-      });
+      worksheet.addRow(documentData);
 
       worksheet.eachRow({ includeEmpty: false }, (row: any) => {
         const currentCell = row._cells;

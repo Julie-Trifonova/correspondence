@@ -5,8 +5,8 @@ import {
   maxLengthValidator,
   required,
 } from "@utils/validators/validators";
-import { useDispatch } from "react-redux";
-import { reduxForm } from "redux-form";
+import {useDispatch, useSelector} from "react-redux";
+import {change, reduxForm} from "redux-form";
 import s from './IncomingDocumentDataForm.module.css'
 
 import {
@@ -35,14 +35,17 @@ import Box from "@mui/material/Box";
 import {actionButtonsStyle, bull, iconsStyle, typographyTypeStyle, unspecified} from "./IncomingDocumentData";
 import SavingChangesSnackbar from "@components/IncomingDocument/SavingChangesSnackbar";
 import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {documentType} from "../../types/types";
+import {getCurrentDocument} from "../../redux/documentsSelectors";
+import {FormAction} from "redux-form/lib/actions";
 
 const IncomingDocumentDataForm = ({
   initialValues,
   onSubmit,
-  document,
-  updateFormData,
 }: any) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  let document = useSelector(getCurrentDocument);
   const [checkedDocumentIsReading, setCheckedDocumentIsReading] =
     React.useState(document.documentIsReading);
   const [checkedDeliveryService, setCheckedDeliveryService] = React.useState(
@@ -52,6 +55,15 @@ const IncomingDocumentDataForm = ({
     document.deadline
   );
   const [checkedStatus, setStatus] = React.useState(document.status);
+
+
+  const updateFormData = (field: string, value: documentType) => {
+    dispatch(change("incomingDocumentForm", field, value));
+  };
+
+  // const updateFormDataType = {
+  // (field: string, value: documentType) => () => (form: string, field: string, value: documentType, touch?: boolean | undefined, persistentSubmitErrors?: boolean | undefined) => () => void
+  // }
 
   const oneLineStyle = {
     display: 'grid',
@@ -80,7 +92,7 @@ const IncomingDocumentDataForm = ({
   }
 
   return (
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={() => onSubmit()}>
         <Box>
           <Card sx={{
             display: 'block',

@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
 import { useDispatch, useSelector } from "react-redux";
-import {Navigate, useLocation, useNavigate} from "react-router-dom";
-import { change } from "redux-form";
-
-import { DeleteConfirmation } from "../../common/DeleteConfirmation/DeleteConfirmation";
+import {useLocation, useNavigate} from "react-router-dom";
+import {change, FormSubmitHandler, SubmitHandler} from "redux-form";
 import {
-  getCurrentDocument, getCurrentPage,
-  getDocumentsFilter,
-  getPageSize,
-  getTotalDocumentsCount
+  getCurrentDocument
 } from "../../redux/documentsSelectors";
 import {
   addIncomingDocument,
-  deleteIncomingDocument,
   getCurrentIncomingDocument,
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
@@ -36,10 +30,6 @@ const IncomingDocument = () => {
     location.pathname.split("/");
   const documentId = Number(documentIdString);
 
-  const updateFormData = (field: string, value: documentType) => {
-    dispatch(change("incomingDocumentForm", field, value));
-  };
-
   useEffect(() => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
@@ -56,8 +46,7 @@ const IncomingDocument = () => {
     localStorage.setItem("SelectedOption", option);
     setEditMode(option);
   };
-  const handleSubmit = (e: any) => {
-    // e.preventDefault();
+  const handleSubmit = () => {
     if (!!location.state) {
       dispatch(addIncomingDocument(documentId, document)).then(() => {
         setSelectedOption("0");
@@ -72,13 +61,9 @@ const IncomingDocument = () => {
   return (
     <div>
       {Number(editMode) ? (
-        //@ts-ignore
         <IncomingDocumentDataFormReduxForm
           initialValues={document}
           onSubmit={handleSubmit}
-          //@ts-ignore
-          document={document}
-          updateFormData={updateFormData}
         />
       ) : (
         <IncomingDocumentData

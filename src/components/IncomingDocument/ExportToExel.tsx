@@ -1,16 +1,17 @@
-import React, {ReactNode} from "react";
+import React from "react";
 
+import { actionButtonsStyle } from "@components/IncomingDocument/IncomingDocumentData";
+import Button from "@mui/material/Button";
 import Excel from "exceljs";
 import { saveAs } from "file-saver";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css"
-import Button from '@mui/material/Button';
-import {actionButtonsStyle} from "@components/IncomingDocument/IncomingDocumentData";
-import {useSelector} from "react-redux";
-import {getCurrentDocument} from "../../redux/documentsSelectors";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { useSelector } from "react-redux";
+
+import { getCurrentDocument } from "../../redux/documentsSelectors";
 
 export const ExportToExel = () => {
-  const currentDocument = useSelector(getCurrentDocument)
+  const currentDocument = useSelector(getCurrentDocument);
   const documentData = {
     id: currentDocument.id,
     name: currentDocument.name,
@@ -20,16 +21,40 @@ export const ExportToExel = () => {
     organizationName: currentDocument.organizationName,
     organizationEmail: currentDocument.organizationEmail,
     organizationPhoneNumber: currentDocument.organizationPhoneNumber,
-    organizationAdditionalInformation: currentDocument.organizationAdditionalInformation,
-    documentIsReading: currentDocument.documentIsReading ? 'Прочитано' : 'Не прочитано',
-    status: currentDocument.status === "consideration" ? "На рассмотрении" : currentDocument.status === "sent response" ? "Отправлен ответ" : "Не указано",
+    organizationAdditionalInformation:
+      currentDocument.organizationAdditionalInformation,
+    documentIsReading: currentDocument.documentIsReading
+      ? "Прочитано"
+      : "Не прочитано",
+    status:
+      currentDocument.status === "consideration"
+        ? "На рассмотрении"
+        : currentDocument.status === "sent response"
+        ? "Отправлен ответ"
+        : "Не указано",
     deliveryDate: currentDocument.deliveryDate,
-    deliveryService: currentDocument.deliveryService === "fax" ? "Факс" : currentDocument.deliveryService === "paper" ? "Бумага" : "Не указано",
-    deadline: currentDocument.deadline === "month" ? "Месяц" : currentDocument.deadline === "week" ? "Неделя" : currentDocument.deadline === "day" ? "День" : currentDocument.deadline === "urgent" ? "Срочно" : currentDocument.deadline === "unspecified" ? "Не установлено" : "Не установлено",
+    deliveryService:
+      currentDocument.deliveryService === "fax"
+        ? "Факс"
+        : currentDocument.deliveryService === "paper"
+        ? "Бумага"
+        : "Не указано",
+    deadline:
+      currentDocument.deadline === "month"
+        ? "Месяц"
+        : currentDocument.deadline === "week"
+        ? "Неделя"
+        : currentDocument.deadline === "day"
+        ? "День"
+        : currentDocument.deadline === "urgent"
+        ? "Срочно"
+        : currentDocument.deadline === "unspecified"
+        ? "Не установлено"
+        : "Не установлено",
     storagePlace: currentDocument.storagePlace,
     subDocuments: currentDocument.subDocuments,
     links: currentDocument.links,
-  }
+  };
   const columns = [
     { header: "", key: "name" },
     { header: "Регистрационный номер", key: "registrationNumber" },
@@ -44,7 +69,7 @@ export const ExportToExel = () => {
     },
     {
       header: "Прочитано/не прочитано",
-      key: "documentIsReading"
+      key: "documentIsReading",
     },
     { header: "Статус", key: "status" },
     { header: "Дата получения", key: "deliveryDate" },
@@ -120,13 +145,16 @@ export const ExportToExel = () => {
 
   return (
     <div>
-          <Button size="medium"
-                  onClick={ExportConfirmation}
-                  sx={actionButtonsStyle}
-                  style={{
-                    marginLeft: '8px'
-                  }}
-          >Exel</Button>
+      <Button
+        size="medium"
+        onClick={ExportConfirmation}
+        sx={actionButtonsStyle}
+        style={{
+          marginLeft: "8px",
+        }}
+      >
+        Exel
+      </Button>
     </div>
   );
 };

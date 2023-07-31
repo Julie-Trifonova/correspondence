@@ -1,5 +1,6 @@
 import { instance } from "@components/api/api";
-import {documentType} from "../../types/types";
+
+import { documentType } from "../../types/types";
 
 export const incomingCorrespondenceAPI = {
   getIncomingCorrespondencePage(

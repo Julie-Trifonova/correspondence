@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 
+import { IncomingDocumentData } from "@components/IncomingDocument/IncomingDocumentData";
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
 import { useDispatch, useSelector } from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
-import {change, FormSubmitHandler, SubmitHandler} from "redux-form";
-import {
-  getCurrentDocument
-} from "../../redux/documentsSelectors";
+import { useLocation, useNavigate } from "react-router-dom";
+import { change, FormSubmitHandler, SubmitHandler } from "redux-form";
+
+import { getCurrentDocument } from "../../redux/documentsSelectors";
 import {
   addIncomingDocument,
   getCurrentIncomingDocument,
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
-import {IncomingDocumentData} from "@components/IncomingDocument/IncomingDocumentData";
-import {documentType} from "../../types/types";
+import { documentType } from "../../types/types";
 
 const IncomingDocument = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const IncomingDocument = () => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
     }
-    navigate(`/incomingCorrespondence/${documentId}`)
+    navigate(`/incomingCorrespondence/${documentId}`);
   }, [documentId]);
 
   const getInitialState = () => {

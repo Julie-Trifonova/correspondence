@@ -1,5 +1,5 @@
 import { incomingCorrespondenceAPI } from "@components/api/IncomingCorrespondenceAPI";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 let initialState = {
   // incomingDocument: null as any | null,

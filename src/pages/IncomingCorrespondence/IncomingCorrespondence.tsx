@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 
 import { IncomingDocumentCard } from "@components/IncomingDocument/IncomingDocumentCard";
+import AddIcon from "@mui/icons-material/Add";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -22,10 +25,6 @@ import {
   getDocumentsIncomingCorrespondence,
   getDocumentsIncomingCorrespondencePage,
 } from "../../redux/incomingCorrespondenceReducer";
-
-import Button from '@mui/material/Button';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import AddIcon from '@mui/icons-material/Add';
 
 type QueryParamsType = {
   filter: { type?: string };
@@ -144,62 +143,65 @@ const IncomingCorrespondence = () => {
   return (
     <div>
       {isFetching ? <Preloader /> : null}
-    <div className={s.header}>
-      <IncomingCorrespondenceFilterForm onFilterChanged={onFilterChanged} />
-      <div className={s.add_button_box}>
-        <Link
+      <div className={s.header}>
+        <IncomingCorrespondenceFilterForm onFilterChanged={onFilterChanged} />
+        <div className={s.add_button_box}>
+          <Link
             to={`${totalDocumentsCount + 1}`}
             state={{ newDocument: newDocument }}
-        >
-          <Button variant="outlined"
-                  startIcon={<AddIcon />}
-                  sx={{
-                    width: '140px',
-                    height: '50px',
-                    boxSizing: 'border-box',
-                    fontFamily: 'IBM Plex Sans, sans-serif',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    color: '#645A38',
-                    letterSpacing: '1px',
-                    border: `${0.5}px solid ${'#F4E2DB'}`,
-                    boxShadow: `${0}px ${2}px ${2}px ${'#99b9fd'}`,
-                    '&:hover': {
-                      color: '#4F1DC7',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
-                      boxShadow: `${0}px ${4}px ${4}px ${'#99b9fd'}`,
-                      border: `${4}px solid ${'#99b9fd'}`,
-                    }
-                  }}
-          >Документ</Button>
-        </Link>
+          >
+            <Button
+              variant="outlined"
+              startIcon={<AddIcon />}
+              sx={{
+                width: "140px",
+                height: "50px",
+                boxSizing: "border-box",
+                fontFamily: "IBM Plex Sans, sans-serif",
+                fontSize: "14px",
+                fontWeight: "bold",
+                color: "#645A38",
+                letterSpacing: "1px",
+                border: `${0.5}px solid ${"#F4E2DB"}`,
+                boxShadow: `${0}px ${2}px ${2}px ${"#99b9fd"}`,
+                "&:hover": {
+                  color: "#4F1DC7",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  boxShadow: `${0}px ${4}px ${4}px ${"#99b9fd"}`,
+                  border: `${4}px solid ${"#99b9fd"}`,
+                },
+              }}
+            >
+              Документ
+            </Button>
+          </Link>
+        </div>
       </div>
-    </div>
       <div className={`${s.paginator_box_top} ${s.paginator_box}`}>
-      <Paginator
-        totalDocumentsCount={totalDocumentsCount}
-        pageSize={pageSize}
-        currentPage={currentPage}
-        onPageChanged={onPageChanged}
-        portionSize={2}
-      />
-      </div>
-      <div className={s.cards}>
-        {documents.map((d: any) => (
-          <div>
-            <IncomingDocumentCard document={d}/>
-          </div>
-        ))}
-      </div>
-      <div className={`${s.paginator_box_bottom} ${s.paginator_box}`}>
-      <Paginator
+        <Paginator
           totalDocumentsCount={totalDocumentsCount}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChanged={onPageChanged}
           portionSize={2}
-      />
+        />
+      </div>
+      <div className={s.cards}>
+        {documents.map((d: any) => (
+          <div>
+            <IncomingDocumentCard document={d} />
+          </div>
+        ))}
+      </div>
+      <div className={`${s.paginator_box_bottom} ${s.paginator_box}`}>
+        <Paginator
+          totalDocumentsCount={totalDocumentsCount}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChanged={onPageChanged}
+          portionSize={2}
+        />
       </div>
     </div>
   );

@@ -51,10 +51,6 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
     dispatch(change("incomingDocumentForm", field, value));
   };
 
-  // const updateFormDataType = {
-  // (field: string, value: documentType) => () => (form: string, field: string, value: documentType, touch?: boolean | undefined, persistentSubmitErrors?: boolean | undefined) => () => void
-  // }
-
   const oneLineStyle = {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",

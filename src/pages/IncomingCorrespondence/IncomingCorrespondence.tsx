@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import { IncomingDocumentCard } from "@components/IncomingDocument/IncomingDocumentCard";
 import AddIcon from "@mui/icons-material/Add";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -20,11 +19,11 @@ import {
   getTotalDocumentsCount,
 } from "../../redux/documentsSelectors";
 import {
-  deleteIncomingDocument,
   FilterType,
   getDocumentsIncomingCorrespondence,
   getDocumentsIncomingCorrespondencePage,
 } from "../../redux/incomingCorrespondenceReducer";
+import { documentType } from "../../types/types";
 
 type QueryParamsType = {
   filter: { type?: string };
@@ -70,7 +69,7 @@ const IncomingCorrespondence = () => {
         search: `_limit=${pageSize}&_page=${currentPage}&${filter.type}=${filter.term}&_sort=${filter.type}&_order=DESC`,
       });
     }
-  }, [filter, currentPage]);
+  }, [filter, currentPage, pageSize, navigate]);
 
   useEffect(() => {
     const parsed = new URLSearchParams(location.search.substring(1) as any);
@@ -115,7 +114,7 @@ const IncomingCorrespondence = () => {
     dispatch(
       getDocumentsIncomingCorrespondencePage(actualPage, pageSize, filter)
     );
-  }, []);
+  }, [currentPage, dispatch, filter, location.search, pageSize]);
 
   useEffect(() => {
     const query: QueryParamsType = { filter };
@@ -127,7 +126,7 @@ const IncomingCorrespondence = () => {
     navigate({
       search: `_limit=${pageSize}&_page=${currentPage}&${filter.type}=${filter.term}&_sort=${filter.type}&_order=DESC`,
     });
-  }, [filter, currentPage]);
+  }, [filter, currentPage, navigate, pageSize]);
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(getDocumentsIncomingCorrespondence());
@@ -188,7 +187,7 @@ const IncomingCorrespondence = () => {
         />
       </div>
       <div className={s.cards}>
-        {documents.map((d: any) => (
+        {documents.map((d: documentType) => (
           <div>
             <IncomingDocumentCard document={d} />
           </div>

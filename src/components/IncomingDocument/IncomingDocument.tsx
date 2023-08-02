@@ -4,7 +4,6 @@ import { IncomingDocumentData } from "@components/IncomingDocument/IncomingDocum
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { change, FormSubmitHandler, SubmitHandler } from "redux-form";
 
 import { getCurrentDocument } from "../../redux/documentsSelectors";
 import {
@@ -12,7 +11,6 @@ import {
   getCurrentIncomingDocument,
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
-import { documentType } from "../../types/types";
 
 const IncomingDocument = () => {
   const dispatch = useDispatch();

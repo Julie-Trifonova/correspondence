@@ -19,10 +19,6 @@ type FormType = {
   term: string;
   type: string;
 };
-const filterFormValidate = (values: any) => {
-  const errors = {};
-  return errors;
-};
 type PropsType = {
   onFilterChanged: (filter: FilterType) => void;
 };
@@ -49,11 +45,11 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({
     setSubmitting(false);
   };
 
-  const onChangeTermInput = (e: any) => {
+  const onChangeTermInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputData({ ...inputData, inputTerm: e.target.value });
     setState(true);
   };
-  const onChangeTypeInput = (e: any) => {
+  const onChangeTypeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.innerText === "Совпадения в тексте") {
       setInputData({ ...inputData, inputType: "q" });
     } else if (e.target.innerText === "Название") {
@@ -74,7 +70,6 @@ export const IncomingCorrespondenceFilterForm: React.FC<PropsType> = ({
         }}
         onSubmit={onSubmit}
         enableReinitialize={true}
-        validate={filterFormValidate}
       >
         {({ isSubmitting }) => (
           <Form className={s.form}>

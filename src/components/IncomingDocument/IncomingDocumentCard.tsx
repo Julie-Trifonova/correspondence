@@ -13,8 +13,13 @@ import { NavLink } from "react-router-dom";
 import s from "./IncomingDocumentCard.module.css";
 import { DeleteConfirmation } from "../../common/DeleteConfirmation/DeleteConfirmation";
 import { deleteIncomingDocument } from "../../redux/incomingCorrespondenceReducer";
+import { documentType } from "../../types/types";
 
-export const IncomingDocumentCard = ({ document }: any) => {
+type incomingDocumentCardType = {
+  document: documentType;
+};
+export const IncomingDocumentCard = (props: incomingDocumentCardType) => {
+  const { document } = props;
   const bull = (
     <Box
       component="span"

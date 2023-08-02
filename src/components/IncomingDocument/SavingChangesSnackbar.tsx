@@ -3,7 +3,6 @@ import * as React from "react";
 import Snackbar from "@mui/base/Snackbar";
 import { SnackbarCloseReason } from "@mui/base/useSnackbar";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import { Transition } from "react-transition-group";
@@ -39,7 +38,6 @@ export default function SavingChangesSnackbar() {
         <Button size="medium" type="submit">
           Сохранить
         </Button>
-        {/*Сохранить*/}
       </TriggerButton>
       <StyledSnackbar
         autoHideDuration={5000}
@@ -78,8 +76,6 @@ export default function SavingChangesSnackbar() {
                   Everything was sent to the desired address.
                 </p>
               </div>
-
-              {/*<CloseIcon onClick={handleClose} className="snackbar-close-icon" />*/}
             </SnackbarContent>
           )}
         </Transition>

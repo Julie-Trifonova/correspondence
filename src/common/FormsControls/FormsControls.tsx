@@ -1,21 +1,10 @@
 import React from "react";
 
-import { typographyDataStyle } from "@components/IncomingDocument/IncomingDocumentData";
-import FormControl, { FormControlState } from "@mui/base/FormControl";
-import Input, { inputClasses } from "@mui/base/Input";
-import TextareaAutosize from "@mui/base/TextareaAutosize";
-import Box from "@mui/material/Box";
+import Input from "@mui/base/Input";
 import Checkbox from "@mui/material/Checkbox";
-import TextField from "@mui/material/TextField";
 import { styled } from "@mui/system";
 import { FieldValidatorType } from "@utils/validators/validators";
-import {
-  change,
-  Field,
-  WrappedFieldMetaProps,
-  WrappedFieldProps,
-} from "redux-form";
-import { FormAction } from "redux-form/lib/actions";
+import { Field, WrappedFieldProps } from "redux-form";
 
 import s from "./FormsControls.module.css";
 import { documentType, fieldPropsType } from "../../types/types";
@@ -28,17 +17,7 @@ function createField<FormKeysType extends string>(
   props: fieldPropsType,
   text = "",
   documentProps: documentType,
-  updateFormData: any
-  //     (
-  //   field: string,
-  //   value: documentType
-  // ) => () => (
-  //   form: string,
-  //   field: string,
-  //   value: documentType,
-  //   touch?: boolean,
-  //   persistentSubmitErrors?: boolean
-  // ) => () => void
+  updateFormData: (field: string, value: documentType) => void
 ) {
   updateFormData(name, documentProps);
   return (

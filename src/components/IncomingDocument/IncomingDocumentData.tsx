@@ -15,7 +15,6 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { confirmAlert } from "react-confirm-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -27,6 +26,7 @@ import {
   getPageSize,
 } from "../../redux/documentsSelectors";
 import { deleteIncomingDocument } from "../../redux/incomingCorrespondenceReducer";
+import { documentType } from "../../types/types";
 
 export const bull = (
   <Box
@@ -93,7 +93,15 @@ const typographyMarginStyle = {
   margin: `${6}px ${0}px`,
 };
 
-export const IncomingDocumentData = ({ goToEditMode, document }: any) => {
+type incomingDocumentDataType = {
+  goToEditMode: () => void;
+  document: documentType;
+};
+
+export const IncomingDocumentData = ({
+  goToEditMode,
+  document,
+}: incomingDocumentDataType) => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 

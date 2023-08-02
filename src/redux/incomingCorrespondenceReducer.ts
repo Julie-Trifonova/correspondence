@@ -1,10 +1,9 @@
 import { incomingCorrespondenceAPI } from "@components/api/IncomingCorrespondenceAPI";
-import { useNavigate } from "react-router-dom";
+
+import { documentType } from "../types/types";
 
 let initialState = {
-  // incomingDocument: null as any | null,
-  // incomingDocumentId: '' as string,
-  documents: [] as any | null,
+  documents: [] as Array<documentType> | null,
   isFetching: true,
   currentPage: 1,
   filter: {
@@ -13,7 +12,7 @@ let initialState = {
   },
   totalDocumentsCount: "",
   pageSize: 5,
-  document: {} as object | any,
+  document: {} as documentType,
 };
 
 const incomingCorrespondenceReducer = (state = initialState, action: any) => {
@@ -68,11 +67,11 @@ const incomingCorrespondenceReducer = (state = initialState, action: any) => {
 };
 
 export const actions = {
-  setCurrentDocumentActionCreator: (document: any) => ({
+  setCurrentDocumentActionCreator: (document: documentType) => ({
     type: "CS/INCOMING_CORRESPONDENCE/SET_DOCUMENT",
     document,
   }),
-  deleteIncomingDocumentActionCreator: (documentId: any) => ({
+  deleteIncomingDocumentActionCreator: (documentId: number) => ({
     type: "CS/INCOMING_CORRESPONDENCE/DELETE_DOCUMENT",
     documentId,
     documents: [],

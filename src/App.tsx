@@ -23,19 +23,19 @@ function App() {
           <Header />
           <Routes>
             <Route
-              path="incomingCorrespondence"
+              path="correspondence_system/incomingCorrespondence"
               element={<IncomingCorrespondence />}
             />
             <Route
-              path="outgoingCorrespondence"
+              path="correspondence_system/outgoingCorrespondence"
               element={<OutgoingCorrespondence />}
             />
             <Route
-              path="incomingCorrespondence/:documentId"
+              path="correspondence_system/incomingCorrespondence/:documentId"
               element={<IncomingDocument />}
             />
             <Route
-              path="outgoingCorrespondence/:documentId"
+              path="correspondence_system/outgoingCorrespondence/:documentId"
               element={<OutgoingDocument />}
             />
             {/*<Route path="*" element={<Navigate to="main" replace/>} />*/}

@@ -111,8 +111,7 @@ export const IncomingDocumentData = ({
 
   const navigateToListIncomingCorrespondence = () => {
     navigate(
-      `/incomingCorrespondence?_limit=${pageSize}&_page=${currentPage}&${filter.type}=${filter.term}&_sort=${filter.type}&_order=DESC`,
-      { replace: true }
+      `/correspondence_system/incomingCorrespondence?_limit=${pageSize}&_page=${currentPage}&${filter.type}=${filter.term}&_sort=${filter.type}&_order=DESC`
     );
   };
 

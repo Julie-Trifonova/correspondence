@@ -31,7 +31,7 @@ const IncomingDocument = () => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
     }
-    navigate(`/incomingCorrespondence/${documentId}`);
+    navigate(`correspondence_system/incomingCorrespondence/${documentId}`);
   }, [documentId]);
 
   const getInitialState = () => {

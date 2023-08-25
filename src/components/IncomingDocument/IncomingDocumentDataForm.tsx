@@ -77,6 +77,14 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
     marginRight: "3px",
   };
 
+  const [_root, _incomingCorrespondence, documentIdString]: Array<string> =
+    location.pathname.split("/");
+  const documentId = Number(documentIdString);
+
+  const navigateToCard = () => {
+    navigate(`/correspondence_system/incomingCorrespondence/${documentId}`);
+  };
+
   return (
     <form onSubmit={() => onSubmit()}>
       <Box>
@@ -130,7 +138,7 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
               </Button>
               <Button
                 type="submit"
-                onClick={() => navigate(-1)}
+                onClick={() => navigateToCard()}
                 sx={actionButtonsStyle}
               >
                 Назад

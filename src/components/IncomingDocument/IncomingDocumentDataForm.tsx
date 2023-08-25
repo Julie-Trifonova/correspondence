@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { maxLengthValidator, required } from "@utils/validators/validators";
 import { useDispatch, useSelector } from "react-redux";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { change, reduxForm } from "redux-form";
 
 import {

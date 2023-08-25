@@ -45,7 +45,7 @@ export const Header = () => {
 
   return (
     <Stack className={s.box} spacing={2} direction="row">
-      <NavLink to="/incomingCorrespondence">
+      <NavLink to="correspondence_system/incomingCorrespondence">
         <CustomButton
           className={active === "incoming correspondence" ? "active" : ""}
           onClick={() => setActive("incoming correspondence")}
@@ -53,7 +53,7 @@ export const Header = () => {
           Входящая корреспонденция
         </CustomButton>
       </NavLink>
-      <NavLink to="/outgoingCorrespondence">
+      <NavLink to="correspondence_system/outgoingCorrespondence">
         <CustomButton
           className={active === "outgoing correspondence" ? "active" : ""}
           onClick={() => setActive("outgoing correspondence")}

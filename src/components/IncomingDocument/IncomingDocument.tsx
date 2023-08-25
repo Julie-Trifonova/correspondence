@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { IncomingDocumentData } from "@components/IncomingDocument/IncomingDocumentData";
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
+import { replace } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -11,7 +12,6 @@ import {
   getCurrentIncomingDocument,
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
-import {replace} from "formik";
 
 const IncomingDocument = () => {
   const dispatch = useDispatch();

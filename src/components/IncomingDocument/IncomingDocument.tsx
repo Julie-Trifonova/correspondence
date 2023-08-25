@@ -32,10 +32,7 @@ const IncomingDocument = () => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
     }
-    navigate(`correspondence_system/incomingCorrespondence/${documentId}`, {
-      replace: true,
-    });
-  }, [documentId]);
+  }, [dispatch, location.state, navigate, documentId]);
 
   const getInitialState = () => {
     // return localStorage.getItem("SelectedOption") || "0";

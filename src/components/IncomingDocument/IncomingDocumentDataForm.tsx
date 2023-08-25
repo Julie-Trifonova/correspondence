@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { maxLengthValidator, required } from "@utils/validators/validators";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { change, reduxForm } from "redux-form";
 
 import {
@@ -77,6 +77,7 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
     marginRight: "3px",
   };
 
+  let location = useLocation();
   const [_root, _incomingCorrespondence, documentIdString]: Array<string> =
     location.pathname.split("/");
   const documentId = Number(documentIdString);

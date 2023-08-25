@@ -11,6 +11,7 @@ import {
   getCurrentIncomingDocument,
   updateIncomingDocument,
 } from "../../redux/incomingCorrespondenceReducer";
+import {replace} from "formik";
 
 const IncomingDocument = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ const IncomingDocument = () => {
     if (!location.state) {
       dispatch(getCurrentIncomingDocument(documentId));
     }
-    navigate(`correspondence_system/incomingCorrespondence/${documentId}`);
+    navigate(`correspondence_system/incomingCorrespondence/${documentId}`, {
+      replace: true,
+    });
   }, [documentId]);
 
   const getInitialState = () => {

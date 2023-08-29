@@ -24,8 +24,12 @@ const IncomingDocument = () => {
     document = newDocument;
   }
 
-  const [_root, _incomingCorrespondence, documentIdString]: Array<string> =
-    location.pathname.split("/");
+  const [
+    _root,
+    _correspondence_system,
+    _incomingCorrespondence,
+    documentIdString,
+  ]: Array<string> = location.pathname.split("/");
   const documentId = Number(documentIdString);
 
   useEffect(() => {

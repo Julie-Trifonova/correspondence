@@ -26,7 +26,7 @@ export const incomingCorrespondenceAPI = {
   },
   getCurrentDocument(documentId: number) {
     return instance
-      .get(`incomingCorrespondenceDocuments/` + documentId)
+      .get(`incomingCorrespondenceDocuments/${documentId}`)
       .then((response) => response.data);
   },
   updateIncomingDocument(documentId: number, formData: documentType) {
@@ -36,12 +36,12 @@ export const incomingCorrespondenceAPI = {
   },
   addIncomingDocument(document: documentType) {
     return instance
-      .post("incomingCorrespondenceDocuments", document)
+      .post("incomingCorrespondenceDocuments/", document)
       .then((response) => response.data);
   },
   deleteIncomingDocument(documentId: number) {
     return instance
-      .delete("incomingCorrespondenceDocuments/" + documentId)
+      .delete(`incomingCorrespondenceDocuments/${documentId}`)
       .then((response) => response.data);
   },
 };

@@ -29,23 +29,23 @@ function App() {
           <Header />
           <Routes>
             <Route
-              path="correspondence_system/incomingCorrespondence"
+              path="/correspondence_system/incomingCorrespondence"
               element={<IncomingCorrespondence />}
             />
             <Route
-              path="correspondence_system/outgoingCorrespondence"
+              path="/correspondence_system/outgoingCorrespondence"
               element={<OutgoingCorrespondence />}
             />
             <Route
-              path="correspondence_system/incomingCorrespondence/:documentId"
+              path="/correspondence_system/incomingCorrespondence/:documentId"
               element={<IncomingDocument />}
             />
             <Route
-              path="correspondence_system/outgoingCorrespondence/:documentId"
+              path="/correspondence_system/outgoingCorrespondence/:documentId"
               element={<OutgoingDocument />}
             />
             {/*<Route path="*" element={<Navigate to="main" replace/>} />*/}
-            <Route path="*" element={<div>404 NOT FOUND</div>} />
+            <Route path="*" element={<IncomingCorrespondence />} />
           </Routes>
         </Provider>
       </HashRouter>

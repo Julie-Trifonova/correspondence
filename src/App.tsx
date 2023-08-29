@@ -8,7 +8,7 @@ import { Header } from "@components/Header/Header";
 import { IncomingDocument } from "@components/IncomingDocument/IncomingDocument";
 import { OutgoingDocument } from "@components/OutgoingDocument/OutgoingDocument";
 import { connect, Provider } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {BrowserRouter, HashRouter, Navigate, Route, Routes} from "react-router-dom";
 import { compose } from "redux";
 
 import { IncomingCorrespondence } from "./pages/IncomingCorrespondence/IncomingCorrespondence";
@@ -18,7 +18,7 @@ import store from "./redux/reduxStore";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Provider store={store}>
           <Header />
           <Routes>
@@ -42,7 +42,7 @@ function App() {
             <Route path="*" element={<div>404 NOT FOUND</div>} />
           </Routes>
         </Provider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }

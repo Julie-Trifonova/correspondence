@@ -44,8 +44,7 @@ function App() {
               path="/correspondence_system/outgoingCorrespondence/:documentId"
               element={<OutgoingDocument />}
             />
-            {/*<Route path="*" element={<Navigate to="main" replace/>} />*/}
-            <Route path="*" element={<IncomingCorrespondence />} />
+            <Route path="*" element={<div>404 NOT FOUND</div>} />
           </Routes>
         </Provider>
       </HashRouter>

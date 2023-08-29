@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { maxLengthValidator, required } from "@utils/validators/validators";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { change, reduxForm } from "redux-form";
 
 import {
@@ -31,6 +31,7 @@ import {
   TextareaCreate,
 } from "../../common/FormsControls/FormsControls";
 import { getCurrentDocument } from "../../redux/documentsSelectors";
+import { getCurrentIncomingDocument } from "../../redux/incomingCorrespondenceReducer";
 import { documentType } from "../../types/types";
 
 const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
@@ -78,8 +79,12 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
   };
 
   let location = useLocation();
-  const [_root, _incomingCorrespondence, documentIdString]: Array<string> =
-    location.pathname.split("/");
+  const [
+    _root,
+    _correspondence_system,
+    _incomingCorrespondence,
+    documentIdString,
+  ]: Array<string> = location.pathname.split("/");
   const documentId = Number(documentIdString);
 
   const navigateToCard = () => {
@@ -134,7 +139,11 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
               >
                 Входящий документ
               </Typography>
-              <Button type="submit" sx={actionButtonsStyle}>
+              <Button
+                type="submit"
+                sx={actionButtonsStyle}
+                onClick={() => navigateToCard()}
+              >
                 Сохранить
               </Button>
               <Button

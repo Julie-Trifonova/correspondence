@@ -4,7 +4,7 @@ import { IncomingDocumentData } from "@components/IncomingDocument/IncomingDocum
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
 import { replace } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { getCurrentDocument } from "../../redux/documentsSelectors";
 import {
@@ -19,10 +19,10 @@ const IncomingDocument = () => {
   let location = useLocation();
   let navigate = useNavigate();
 
-  if (!!location.state) {
-    const { newDocument } = location.state;
-    document = newDocument;
-  }
+  // if (!!location.state) {
+  //   const { newDocument } = location.state;
+  //   document = newDocument;
+  // }
 
   const [
     _root,
@@ -30,11 +30,15 @@ const IncomingDocument = () => {
     _incomingCorrespondence,
     documentIdString,
   ]: Array<string> = location.pathname.split("/");
-  const documentId = Number(documentIdString);
+  let documentId = Number(documentIdString);
 
   useEffect(() => {
-    if (!location.state) {
+    if (!location.state && !document.id) {
       dispatch(getCurrentIncomingDocument(documentId));
+    } else {
+      documentId = document.id;
+      // navigate(0);
+      // navigate(`/correspondence_system/incomingCorrespondence/${documentId}`, {replace: true})
     }
   }, [dispatch, location.state, navigate, documentId]);
 

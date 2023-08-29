@@ -1,4 +1,5 @@
 import { incomingCorrespondenceAPI } from "@components/api/IncomingCorrespondenceAPI";
+import { useNavigate } from "react-router-dom";
 
 import { documentType } from "../types/types";
 
@@ -145,13 +146,12 @@ export const getCurrentIncomingDocument =
 export const updateIncomingDocument =
   (documentId: number): any =>
   async (dispatch: any, getState: any) => {
+    debugger
     const formData = getState().form.incomingDocumentForm.values;
     await incomingCorrespondenceAPI.updateIncomingDocument(
       documentId,
       formData
     );
-
-    getCurrentIncomingDocument(documentId);
   };
 
 export const addIncomingDocument =

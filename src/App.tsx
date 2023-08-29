@@ -8,7 +8,13 @@ import { Header } from "@components/Header/Header";
 import { IncomingDocument } from "@components/IncomingDocument/IncomingDocument";
 import { OutgoingDocument } from "@components/OutgoingDocument/OutgoingDocument";
 import { connect, Provider } from "react-redux";
-import {BrowserRouter, HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { compose } from "redux";
 
 import { IncomingCorrespondence } from "./pages/IncomingCorrespondence/IncomingCorrespondence";

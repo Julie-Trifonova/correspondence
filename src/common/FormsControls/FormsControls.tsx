@@ -13,7 +13,7 @@ function createField<FormKeysType extends string>(
   placeholder: string,
   name: FormKeysType,
   validators: Array<FieldValidatorType>,
-  component: React.FC<WrappedFieldProps>, // string | React.Component | React.FC,
+  component: React.FC<WrappedFieldProps>,
   props: fieldPropsType,
   text = "",
   documentProps: documentType,

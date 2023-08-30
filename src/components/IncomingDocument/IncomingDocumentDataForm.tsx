@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -33,6 +33,7 @@ import {
 import { getCurrentDocument } from "../../redux/documentsSelectors";
 import { documentType } from "../../types/types";
 import * as repl from "repl";
+import {getCurrentIncomingDocument} from "../../redux/incomingCorrespondenceReducer";
 
 const IncomingDocumentDataForm = ({ initialValues, handleSubmit }: any) => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { maxLengthValidator, required } from "@utils/validators/validators";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { change, reduxForm } from "redux-form";
 
 import {
@@ -31,10 +31,10 @@ import {
   TextareaCreate,
 } from "../../common/FormsControls/FormsControls";
 import { getCurrentDocument } from "../../redux/documentsSelectors";
-import { getCurrentIncomingDocument } from "../../redux/incomingCorrespondenceReducer";
 import { documentType } from "../../types/types";
+import * as repl from "repl";
 
-const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
+const IncomingDocumentDataForm = ({ initialValues, handleSubmit }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let document = useSelector(getCurrentDocument);
@@ -88,11 +88,13 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
   const documentId = Number(documentIdString);
 
   const navigateToCard = () => {
-    navigate(`/correspondence_system/incomingCorrespondence/${documentId}`);
+    navigate(`/correspondence_system/incomingCorrespondence/${documentId}`, {
+      replace: true,
+    });
   };
 
   return (
-    <form onSubmit={() => onSubmit()}>
+    <form onSubmit={() => handleSubmit()}>
       <Box>
         <Card
           sx={{
@@ -139,11 +141,7 @@ const IncomingDocumentDataForm = ({ initialValues, onSubmit }: any) => {
               >
                 Входящий документ
               </Typography>
-              <Button
-                type="submit"
-                sx={actionButtonsStyle}
-                onClick={() => navigateToCard()}
-              >
+              <Button type="submit" sx={actionButtonsStyle}>
                 Сохранить
               </Button>
               <Button

@@ -146,7 +146,6 @@ export const getCurrentIncomingDocument =
 export const updateIncomingDocument =
   (documentId: number): any =>
   async (dispatch: any, getState: any) => {
-    debugger
     const formData = getState().form.incomingDocumentForm.values;
     await incomingCorrespondenceAPI.updateIncomingDocument(
       documentId,

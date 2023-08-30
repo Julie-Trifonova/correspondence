@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { IncomingDocumentData } from "@components/IncomingDocument/IncomingDocumentData";
 import { IncomingDocumentDataFormReduxForm } from "@components/IncomingDocument/IncomingDocumentDataForm";
-import { replace } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { getCurrentDocument } from "../../redux/documentsSelectors";
 import {
@@ -33,12 +32,13 @@ const IncomingDocument = () => {
   let documentId = Number(documentIdString);
 
   useEffect(() => {
-    if (!location.state && !document.id) {
-      dispatch(getCurrentIncomingDocument(documentId));
-    } else {
+    dispatch(getCurrentIncomingDocument(documentId));
+    if (!!location.state && !!document.id) {
       documentId = document.id;
-      // navigate(0);
-      // navigate(`/correspondence_system/incomingCorrespondence/${documentId}`, {replace: true})
+      navigate(0);
+      navigate(`/correspondence_system/incomingCorrespondence/${documentId}`, {
+        replace: true,
+      });
     }
   }, [dispatch, location.state, navigate, documentId]);
 

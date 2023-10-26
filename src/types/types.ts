@@ -1,7 +1,7 @@
 export type documentType = {
-  id: number;
+  id: string;
   name: string;
-  registrationNumber: string;
+  registrationNumber: number;
   registrationDate: string;
   registeredEmployeeFullName: string;
   organizationName: string;

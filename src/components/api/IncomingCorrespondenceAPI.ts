@@ -25,12 +25,12 @@ export const incomingCorrespondenceAPI = {
       .get(`incomingCorrespondenceDocuments`)
       .then((response) => response.data);
   },
-  getCurrentDocument(documentId: number) {
+  getCurrentDocument(documentId: string) {
     return instance
       .get(`incomingCorrespondenceDocuments/${documentId}`)
       .then((response) => response.data);
   },
-  updateIncomingDocument(documentId: number, formData: documentType) {
+  updateIncomingDocument(documentId: string, formData: documentType) {
     return instance
       .patch(`incomingCorrespondenceDocuments/${documentId}`, formData)
       .then((response) => response.data);
@@ -40,7 +40,7 @@ export const incomingCorrespondenceAPI = {
       .post("incomingCorrespondenceDocuments/", document)
       .then((response) => response.data);
   },
-  deleteIncomingDocument(documentId: number) {
+  deleteIncomingDocument(documentId: string) {
     return instance
       .delete(`incomingCorrespondenceDocuments/${documentId}`)
       .then((response) => response.data);

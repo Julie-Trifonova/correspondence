@@ -1,4 +1,7 @@
 import { incomingCorrespondenceAPI } from "@components/api/IncomingCorrespondenceAPI";
+import { db } from "@components/firebase";
+import { readData } from "@components/readData";
+import {addDoc, collection, getDocs} from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 import { documentType } from "../types/types";
@@ -72,7 +75,7 @@ export const actions = {
     type: "CS/INCOMING_CORRESPONDENCE/SET_DOCUMENT",
     document,
   }),
-  deleteIncomingDocumentActionCreator: (documentId: number) => ({
+  deleteIncomingDocumentActionCreator: (documentId: string) => ({
     type: "CS/INCOMING_CORRESPONDENCE/DELETE_DOCUMENT",
     documentId,
     documents: [],
@@ -89,7 +92,9 @@ export const actions = {
     type: "CS/INCOMING_CORRESPONDENCE/SET_FILTER",
     payload: filter,
   }),
-  setDocumentsIncomingCorrespondenceActionCreator: (documents: Array<any>) => ({
+  setDocumentsIncomingCorrespondenceActionCreator: (
+    documents: Array<any> | any
+  ) => ({
     type: "CS/INCOMING_CORRESPONDENCE/SET_DOCUMENTS",
     documents,
   }),
@@ -104,7 +109,17 @@ export const actions = {
 export const getDocumentsIncomingCorrespondence =
   (): any => async (dispatch: any) => {
     dispatch(actions.toggleIsFetchingIncomingCorrespondenceActionCreator(true));
-    const data = await incomingCorrespondenceAPI.getIncomingCorrespondence();
+    // const data = await incomingCorrespondenceAPI.getIncomingCorrespondence();
+    const data = await getDocs(
+      collection(db, "incomingCorrespondenceDocuments")
+    ).then((querySnapshot) => {
+      const newData: any = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      return newData;
+      console.log(newData, "newData");
+    });
     dispatch(
       actions.toggleIsFetchingIncomingCorrespondenceActionCreator(false)
     );
@@ -124,12 +139,23 @@ export const getDocumentsIncomingCorrespondencePage =
     );
     dispatch(actions.setFilterIncomingCorrespondenceActionCreator(filter));
 
-    const data = await incomingCorrespondenceAPI.getIncomingCorrespondencePage(
-      currentPage,
-      pageSize,
-      filter.term,
-      filter.type
-    );
+    // const data = await incomingCorrespondenceAPI.getIncomingCorrespondencePage(
+    //   currentPage,
+    //   pageSize,
+    //   filter.term,
+    //   filter.type
+    // );
+
+    const data = await getDocs(
+      collection(db, "incomingCorrespondenceDocuments")
+    ).then((querySnapshot) => {
+      const newData: any = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      return newData;
+      console.log(newData, "newData");
+    });
     dispatch(
       actions.toggleIsFetchingIncomingCorrespondenceActionCreator(false)
     );
@@ -139,22 +165,68 @@ export const getDocumentsIncomingCorrespondencePage =
 export const getCurrentIncomingDocument =
   (documentId: any): any =>
   async (dispatch: any) => {
-    const data = await incomingCorrespondenceAPI.getCurrentDocument(documentId);
-    dispatch(actions.setCurrentDocumentActionCreator(data));
+    // const data = await incomingCorrespondenceAPI.getCurrentDocument(documentId);
+    const data = await getDocs(
+      collection(db, "incomingCorrespondenceDocuments")
+    ).then((querySnapshot) => {
+      const newData: any = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      return newData;
+      console.log(newData, "newData");
+    });
+    data.map((d: any) => {
+        if(d.id === documentId) {
+            dispatch(actions.setCurrentDocumentActionCreator(d));
+            console.log(d, 'currentDocument')
+        }
+        console.log(d, 'currentDocument')
+        return
+    })
+    // dispatch(actions.setCurrentDocumentActionCreator(data));
   };
 
 export const updateIncomingDocument =
-  (documentId: number): any =>
+  (documentId: string): any =>
   async (dispatch: any, getState: any) => {
     const formData = getState().form.incomingDocumentForm.values;
-    await incomingCorrespondenceAPI.updateIncomingDocument(
-      documentId,
-      formData
-    );
+    // await incomingCorrespondenceAPI.updateIncomingDocument(
+    //   documentId,
+    //   formData
+    // );
+
+      const data = await getDocs(
+          collection(db, "incomingCorrespondenceDocuments")
+      ).then((querySnapshot) => {
+          const newData: any = querySnapshot.docs.map((doc) => ({
+              ...doc.data(),
+              id: doc.id,
+          }));
+          return newData;
+          console.log(newData, "newData");
+      });
+
+      const addData = async (e: any) => {
+          e.preventDefault();
+
+          try {
+              const docRef = await addDoc(
+                  collection(db, "incomingCorrespondenceDocuments"),
+                  {formData}
+                  // { x: "dv" },
+              );
+              console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+              console.error("Error adding document: ", e);
+          }
+      };
+
+
   };
 
 export const addIncomingDocument =
-  (documentId: number, document: any): any =>
+  (documentId: string, document: any): any =>
   async (dispatch: any) => {
     await incomingCorrespondenceAPI.addIncomingDocument(document);
     const data = await incomingCorrespondenceAPI.getCurrentDocument(documentId);
@@ -162,7 +234,7 @@ export const addIncomingDocument =
   };
 
 export const deleteIncomingDocument =
-  (documentId: number): any =>
+  (documentId: string): any =>
   async (dispatch: any, getState: any) => {
     const data = await incomingCorrespondenceAPI.deleteIncomingDocument(
       documentId

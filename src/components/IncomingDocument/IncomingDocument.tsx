@@ -29,7 +29,7 @@ const IncomingDocument = () => {
     _incomingCorrespondence,
     documentIdString,
   ]: Array<string> = location.pathname.split("/");
-  let documentId = Number(documentIdString);
+  let documentId = String(documentIdString);
 
   useEffect(() => {
     dispatch(getCurrentIncomingDocument(documentId));
